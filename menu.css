@@ -1,0 +1,65 @@
+body {
+  font-family: 'Comic Neue', Arial, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #545353, #ece9e6)
+}
+
+.titulo-principal {
+  padding: 1rem;
+  text-align: center;
+  color: white;
+}
+
+.tabla-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 300px;
+  max-width: 90%;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+caption {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  background-color: #f8f8f8;
+}
+
+th,
+td {
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.linea-1-tabla {
+  background-color: #eee;
+}
+
+.color-1-tabla {
+  background-color: #f9f9f9;
+}
+
+.color-2-tabla {
+  background-color: #e0e0e0;
+}
+
+@media screen and (max-width: 600px) {
+  .tabla-contenedor {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  table {
+    width: 90%;
+  }
+}

@@ -1,0 +1,525 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Comic Sans MS', Arial, Verdana, sans-serif;
+}
+
+.nav {
+	--img1: scale(1);
+	--img2: scale(0);
+}
+
+.nav:has(.dropdown:target) {
+	--img1: scale(0);
+	--img2: scale(1);
+	--clip: inset(0 0 0 0);
+}
+
+.nav__container {
+	width: 90%;
+	margin: 0 auto;
+	height: 30px;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-template-areas: "title img";
+	justify-content: space-between;
+	align-items: center;
+	overflow: hidden;
+}
+
+.nav__title {
+	color: #fff;
+	grid-area: title;
+}
+
+.nav__menu {
+	grid-area: img;
+	position: absolute;
+	left: 30px;
+	top: 30px;
+	transform: var(--img1);
+}
+
+.nav__menu--second {
+	transform: var(--img2);
+}
+
+.dropdown {
+	position: fixed;
+	background-color: #3c3b3bf7;
+	width: 75%;
+	max-width: 310px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	padding: 1em;
+	display: grid;
+	align-content: flex-start;
+	gap: 1rem;
+	clip-path: var(--clip, inset(0 100% 100% 0));
+	transition: clip-path .5s;
+}
+
+.dropdown__list {
+	list-style: none;
+}
+
+.dropdown__link {
+	color: rgb(184, 187, 191);
+	padding: 1em .7em;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: .6rem;
+	position: relative;
+	background-color: var(--bg, transparent);
+	border-radius: 6px;
+}
+
+.dropdown__list:has( :checked) {
+	--rows: 1fr;
+	--rotate: rotate(180deg);
+	--bg: #28303B;
+}
+
+.dropdown__check {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.dropdown__arrow {
+	margin-left: auto;
+	transform: var(--rotate, 0);
+	transition: .2s transform;
+}
+
+.dropdown__content {
+	display: grid;
+	grid-template-rows: var(--rows, 0fr);
+	transition: .3s grid-template-rows;
+}
+
+.dropdown__sub {
+	overflow: hidden;
+}
+
+.dropdown__li {
+	width: 85%;
+	list-style: none;
+	margin-left: auto;
+}
+
+.dropdown__anchor {
+	padding: 1em 0;
+	display: block;
+	color: #B6BABE;
+	text-decoration: none;
+}
+
+.conteiner {
+	height: 570px;
+	padding: 60px;
+	width: 90%;
+	max-width: 1000px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.conteiner-primera-parte {
+	top: 60px;
+}
+
+.titulo {
+	margin-top: 35px;
+	color: rgb(93, 88, 88);
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 60px;
+}
+
+/* Acá está la imágen de portada del inicio */
+
+header {
+	width: 100%;
+	height: 270px;
+	background-image: url(imagenesTT/portadaburger.jpg);
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
+}
+
+nav {
+	float: right;
+	text-align: right;
+	padding: 30px 50px 0 0;
+}
+
+nav>a {
+	font-weight: 300;
+	text-decoration: none;
+	margin-right: 10px;
+}
+
+nav>a,
+.catalogo-con-carrito a {
+	color: #fff;
+	text-decoration: none;
+}
+
+header .text-header {
+	display: flex;
+	height: 90px;
+	width: 100%;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.text-header h1 {
+	font-size: 90px;
+	color: rgb(251, 243, 252);
+	height: 250px;
+}
+
+.text-header h2 {
+	font-size: 35px;
+	font-weight: 300;
+	color: white;
+	height: 600px;
+}
+
+/*about us */
+
+.conteiner-sobre-nosotros {
+	cursor: pointer;
+	display: flex;
+	justify-content: space-around;
+}
+
+.imagen-about-us {
+	width: 75%;
+	margin-left: 130px;
+	transition: width 0.5s;
+}
+
+.imagen-about-us:hover {
+	width: 487px;
+}
+
+.sobre-nosotros .contenido-text {
+	width: 48%;
+}
+
+.conteiner-text h3 {
+	margin-bottom: 20px;
+}
+
+.conteiner-text h3 span {
+	background: #55524b;
+	color: #fff;
+	border-radius: 10%;
+	display: inline block;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+	margin-right: 5px;
+	margin-left: 20px;
+}
+
+.conteiner-text p {
+	padding: 0px 0px 30px 15px;
+	font-weight: 300;
+	text-justify: auto;
+	margin-right: 100px;
+}
+
+
+/* Gallery */
+
+.portafolio {
+	background: #f2f2f2;
+}
+
+.galery-port {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.imagen-port {
+	position: relative;
+	overflow: hidden;
+	width: 24%;
+	margin-bottom: 10px;
+	height: 200px;
+	box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+}
+
+.imagen-port img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 0.8s;
+}
+
+.hover-galery p {
+	color: #fff;
+	font-weight: bold;
+	font-size: 1.2rem;
+	text-align: center;
+	padding: 10px;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	transform: translateY(20px);
+	transition: transform 0.3s;
+}
+
+
+
+.imagen-port:hover img {
+	transform: scale(1.1);
+	/* Zoom en la imagen */
+}
+
+/* Fondo de la carta de valoración de los clientes */
+
+.card {
+	margin-left: 300px;
+	margin-bottom: 80px;
+	background: rgb(63.75, 63.75, 63.75);
+	display: flex;
+	width: 60%;
+	height: 130px;
+	align-items: center;
+	justify-content: space-around;
+	border-radius: 5px;
+	box-shadow: 0 0 6px 0 rgba(0 0 0 .6);
+}
+
+/*La imagen de la carta de valoración*/
+
+.card img {
+	margin-left: 50px;
+	width: 80px;
+	height: 80px;
+	object-fit: cover;
+	border: 3px solid #fff;
+	border-radius: 50%;
+	display: block;
+}
+
+/*lo escrito en la carta de valoración*/
+
+.card>.conteiner-text-card {
+	width: 80%;
+	color: #fff;
+}
+
+/* Our team*/
+
+.about-service {
+	background: #f2f2f2;
+	padding-bottom: 30px;
+}
+
+.servicio-ind {
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	width: 30%;
+	margin-bottom: 20px;
+	text-align: center;
+	padding: 0;
+	box-sizing: border-box;
+	background: transparent;
+	border-radius: 0;
+	box-shadow: none;
+	transition: all 0.3s ease;
+}
+
+
+.conteiner-1 {
+	height: 620px;
+	padding: 60px;
+	width: 90%;
+	max-width: 1000px;
+	margin: auto;
+	overflow: hidden;
+}
+
+.conteiner-2 {
+	width: 90%;
+	max-width: 1200px;
+	margin: auto;
+	overflow: hidden;
+}
+
+/*tamaño de las 3 imagenes finales y su separación*/
+.servicio-ind img {
+	width: 300px;
+	height: 200px;
+	padding-right: 25px;
+	padding-left: 40px;
+	transition: 0.5s;
+}
+
+.servicio-ind {
+	background: transparent;
+	box-shadow: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+
+/*tamaño que le da la animación al pasarle por encima a las las 3 imagenes finales de hamburguesas*/
+.servicio-ind img:hover {
+	width: 285px;
+	height: 190px;
+}
+
+.servicio-ind h3 {
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.servicio-ind p {
+	font-weight: 300;
+	text-align: center;
+}
+
+.servicio-ind a {
+	text-decoration: none;
+}
+
+.imagen-boom-burger {
+	margin-right: 30px;
+}
+
+.imagen-vegan-burger {
+	margin-right: 45px;
+}
+
+.imagen-chesse-burger {
+	margin-right: 35px;
+}
+
+
+/* footer*/
+
+footer {
+	background: #414141;
+	padding: 60px 0;
+	margin: auto;
+	overflow: hidden;
+}
+
+.conteiner-footer {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	width: 90%;
+	gap: 1rem;
+	margin: auto;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #ccc;
+}
+
+
+.conteiner-foo {
+	text-align: center;
+}
+
+.conteiner-foo h4 {
+	color: #fff;
+	border-bottom: 3px solid rgb(0, 0, 0);
+	padding-bottom: 5px;
+	margin-bottom: 10px;
+}
+
+.conteiner-foo p {
+	color: #ccc;
+}
+
+.titulo-final {
+	text-align: center;
+	font-size: 24px;
+	margin: 20px 0 0 0;
+	color: #9e9797;
+}
+
+.clientes-conteiner {
+	margin-top: 50px;
+}
+
+/*boton de ir arriba */
+
+.boton-arriba {
+	display: grid;
+	place-items: center;
+	padding: 20px;
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	cursor: pointer;
+}
+
+.boton-arriba img {
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+}
+
+.boton-arriba a {
+	display: none;
+	transition: all 0.3s;
+}
+
+/* Mantiene la estructura original pero ahora clickeable */
+.servicio-cont {
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	gap: 20px;
+}
+
+.enlace-producto h3 {
+	margin: 10px 0;
+	color: #333;
+}
+
+.enlace-producto p {
+	color: #666;
+}
+
+.redes-sociales {
+	position: absolute;
+	top: 30px;
+	left: 35px;
+	z-index: 1000;
+	display: flex;
+	gap: 20px;
+}
+
+.redes-sociales img {
+	width: 30px;
+	height: 30px;
+	transition: transform 0.3s ease;
+}
+
+.redes-sociales img:hover {
+	transform: scale(1.2);
+}

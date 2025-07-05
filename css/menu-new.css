@@ -280,6 +280,9 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 600px;
 }
 
 .menu-item:hover {
@@ -358,6 +361,9 @@ body {
 /* Item Content */
 .item-content {
   padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .item-title {
@@ -380,6 +386,8 @@ body {
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 20px;
+  min-height: 70px;
+  display: block;
 }
 
 .item-details {
@@ -388,6 +396,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
+  margin-top: auto;
 }
 
 .precio {
@@ -469,8 +478,9 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  visibility: visible;
-  opacity: 1;
+  background: white;
+  color: #ff6b35;
+  border: 2px solid #ff6b35;
 }
 
 /* Clase específica para proteger botones del menú */
@@ -499,11 +509,6 @@ body {
 }
 
 
-.btn-agregar-carrito-menu {
-  background: white;
-  color: #ff6b35;
-  border: 2px solid #ff6b35;
-}
 
 .btn-agregar-carrito-menu:hover {
   background: #ff6b35;

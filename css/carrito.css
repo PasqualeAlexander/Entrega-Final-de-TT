@@ -1,0 +1,542 @@
+/* ========== ESTILOS CARRITO DE COMPRAS ========== */
+
+/* ========== WIDGET CARRITO ========== */
+#carrito-widget {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    z-index: 999;
+}
+
+/* ========== BOTÓN CARRITO MEJORADO ========== */
+#carrito-boton {
+    background: linear-gradient(135deg, #ff6b35, #e85d2e, #ff6b35);
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#carrito-boton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+}
+
+#carrito-boton:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 107, 53, 0.6);
+    filter: brightness(1.1);
+}
+
+#carrito-boton:hover::before {
+    left: 100%;
+}
+
+#carrito-boton:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* ========== CONTADOR MEJORADO ========== */
+#carrito-contador,
+.carrito-contador,
+.contador-carrito,
+.carrito-contador-menu {
+    background: linear-gradient(135deg, #fff, #f8f9fa);
+    color: #ff6b35;
+    border-radius: 50%;
+    padding: 4px 10px;
+    margin-left: 10px;
+    font-size: 13px;
+    font-weight: 800;
+    min-width: 24px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    border: 2px solid rgba(255, 107, 53, 0.2);
+    animation: pulse-counter 2s infinite;
+}
+
+/* ========== NOTIFICACIONES ========== */
+.notificacion-carrito-mejorada {
+    position: fixed;
+    top: 120px;
+    right: 20px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 15px;
+    z-index: 10000;
+    transform: translateX(350px) scale(0.8);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.notificacion-icono {
+    font-size: 18px;
+}
+
+.notificacion-texto {
+    flex: 1;
+}
+
+/* ========== MODAL CARRITO MEJORADO ========== */
+#carrito-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(255,107,53,0.2));
+    backdrop-filter: blur(8px);
+    z-index: 1001;
+    overflow-y: auto;
+    animation: modalFadeIn 0.4s ease;
+}
+
+.carrito-contenedor {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    width: 90%;
+    max-width: 550px;
+    margin: 30px auto;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.5);
+    overflow: hidden;
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease forwards;
+}
+
+/* ========== HEADER CARRITO ========== */
+.carrito-header {
+    background: linear-gradient(135deg, #ff6b35, #e85d2e, #d14920);
+    color: white;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.carrito-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float-bg 4s ease-in-out infinite;
+}
+
+.carrito-header h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+}
+
+.carrito-cerrar {
+    background: rgba(255,255,255,0.2);
+    border: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+}
+
+.carrito-cerrar:hover {
+    background: rgba(255,255,255,0.3);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* ========== CONTENIDO CARRITO ========== */
+#carrito-contenido {
+    padding: 25px 30px;
+    max-height: 450px;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+#carrito-contenido::-webkit-scrollbar {
+    width: 8px;
+}
+
+#carrito-contenido::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#carrito-contenido::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ff6b35, #e85d2e);
+    border-radius: 10px;
+}
+
+.carrito-vacio {
+    text-align: center;
+    color: #888;
+    margin: 50px 0;
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+/* ========== ITEMS CARRITO MEJORADOS ========== */
+.carrito-item {
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+    border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+    gap: 18px;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ffffff, #fdfdfd);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.carrito-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+    background: linear-gradient(135deg, #fff, #fafafa);
+}
+
+.carrito-item:last-child {
+    border-bottom: none;
+}
+
+.carrito-item-imagen {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.carrito-item:hover .carrito-item-imagen {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.carrito-item-info {
+    flex: 1;
+}
+
+.carrito-item-info h4 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.carrito-item-precio {
+    margin: 0 0 12px 0;
+    color: #ff6b35;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* ========== CONTROLES CANTIDAD MEJORADOS ========== */
+.carrito-item-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 107, 53, 0.05);
+    padding: 8px 12px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.btn-cantidad {
+    background: linear-gradient(135deg, #ff6b35, #e85d2e);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+}
+
+.btn-cantidad:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-cantidad:active {
+    transform: scale(0.95);
+}
+
+.cantidad-display {
+    font-weight: 700;
+    font-size: 16px;
+    color: #ff6b35;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* ========== BOTÓN ELIMINAR MEJORADO ========== */
+.btn-eliminar {
+    background: linear-gradient(135deg, #ff4757, #ff3742);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+}
+
+.btn-eliminar:hover {
+    transform: scale(1.1) rotate(90deg);
+    box-shadow: 0 6px 20px rgba(255, 71, 87, 0.5);
+    background: linear-gradient(135deg, #ff3742, #ff2d42);
+}
+
+/* ========== FOOTER CARRITO ========== */
+.carrito-footer {
+    padding: 25px 30px;
+    border-top: 1px solid rgba(255, 107, 53, 0.1);
+    background: linear-gradient(135deg, #f8f9fa, #ffffff);
+}
+
+.carrito-total-container {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    padding: 15px;
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 107, 53, 0.05));
+    border-radius: 15px;
+    border: 2px solid rgba(255, 107, 53, 0.2);
+}
+
+.carrito-total-container strong {
+    color: #ff6b35;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* ========== BOTONES ACCIÓN MEJORADOS ========== */
+.carrito-acciones {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.btn-limpiar, 
+.btn-comprar,
+.btn-finalizar-compra {
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-limpiar {
+    background: linear-gradient(135deg, #6c757d, #5a6268);
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.btn-limpiar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+    background: linear-gradient(135deg, #5a6268, #495057);
+}
+
+.btn-comprar,
+.btn-finalizar-compra {
+    background: linear-gradient(135deg, #28a745, #20c997, #28a745);
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+    color: white;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.btn-comprar:hover,
+.btn-finalizar-compra:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.6);
+    filter: brightness(1.1);
+}
+
+/* ========== ESTADOS DEL CARRITO ========== */
+.carrito-con-items {
+    animation: pulse-glow 2s infinite;
+}
+
+.carrito-vacio {
+    opacity: 0.8;
+}
+
+/* ========== ANIMACIONES ========== */
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes pulse-counter {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
+    50% { box-shadow: 0 8px 35px rgba(255, 107, 53, 0.6); }
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float-bg {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* ========== RESPONSIVE MEJORADO ========== */
+@media (max-width: 768px) {
+    .carrito-contenedor {
+        width: 95%;
+        margin: 15px auto;
+        border-radius: 15px;
+    }
+    
+    #carrito-widget {
+        top: 60px;
+        right: 15px;
+    }
+    
+    #carrito-boton {
+        padding: 12px 18px;
+        font-size: 14px;
+    }
+    
+    .carrito-header {
+        padding: 20px 25px;
+    }
+    
+    .carrito-header h3 {
+        font-size: 20px;
+    }
+    
+    #carrito-contenido {
+        padding: 20px 25px;
+        max-height: 350px;
+    }
+    
+    .carrito-item {
+        padding: 15px 10px;
+        gap: 12px;
+    }
+    
+    .carrito-item-imagen {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .carrito-footer {
+        padding: 20px 25px;
+    }
+    
+    .btn-limpiar, 
+    .btn-comprar,
+    .btn-finalizar-compra {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .notificacion-carrito-mejorada {
+        top: 120px;
+        right: 15px;
+        font-size: 14px;
+        padding: 12px 18px;
+        border-radius: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carrito-contenedor {
+        width: 98%;
+        margin: 10px auto;
+    }
+    
+    .carrito-acciones {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-limpiar, 
+    .btn-comprar,
+    .btn-finalizar-compra {
+        width: 100%;
+    }
+}

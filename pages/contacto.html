@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contacto - ¡Que Burger!</title>
+  <link rel="shortcut icon" href="../imagenesTT/logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/contacto.css" />
+  <!-- Módulos JavaScript -->
+  <script src="../js/productos.js" defer></script>
+  <script src="../js/carrito.js" defer></script>
+  <script src="../js/animaciones.js" defer></script>
+  <script src="../js/contacto.js" defer></script>
+  <script src="../js/filtros.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</head>
+
+<body>
+  <a id="ir-arriba"></a>
+  
+  <!-- Hero Section con Header incluido -->
+  <section class="hero-menu">
+    
+    <!-- Navegación -->
+    <nav class="menu-nav">
+      <a href="menu.html" class="nav-link">Menú</a>
+      <a href="sobre-nosotros.html" class="nav-link">Sobre nosotros</a>
+      <a href="../index.html" class="nav-link">Inicio</a>
+    </nav>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">¡Que Burger!</h1>
+      <h2><b>Contanos tu experiencia</b></h2>
+    </div>
+    <div class="particulas-hero"></div>
+  </section>
+
+  <main>
+    <!-- Sección del formulario de contacto -->
+    <section class="contacto-formulario">
+      <div class="conteiner">
+        <div class="form-wrapper">
+          <div class="form-header">
+            <h2 class="titulo">Envíanos un mensaje</h2>
+            <p>¿Tienes alguna pregunta, sugerencia o quieres hacer un pedido especial? ¡Estamos aquí para ayudarte!</p>
+          </div>
+          
+          <form action="https://formspree.io/f/xwpodaab" method="POST" class="contacto-form">
+            <div class="form-group">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Ingresa tu nombre completo" />
+            </div>
+
+            <div class="form-group">
+              <label for="correo">Correo electrónico *</label>
+              <input type="email" id="correo" name="email" required placeholder="tu@email.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="telefono">Teléfono (opcional)</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="+54 11 1234-5678" />
+            </div>
+
+            <div class="form-group">
+              <label for="asunto">Asunto</label>
+              <select id="asunto" name="asunto" required>
+                <option value="">Selecciona un asunto</option>
+                <option value="pedido">Hacer un pedido</option>
+                <option value="consulta">Consulta general</option>
+                <option value="sugerencia">Sugerencia</option>
+                <option value="reclamo">Reclamo</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Mensaje *</label>
+              <textarea id="mensaje" name="mensaje" rows="6" required placeholder="Escribe tu mensaje aquí..."></textarea>
+              <div class="char-counter">0/500 caracteres</div>
+            </div>
+
+            <button type="submit" class="btn-enviar">
+              <span>Enviar mensaje</span>
+              <div class="btn-icon">📨</div>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de imagen promocional -->
+    <section class="contacto-promo">
+      <div class="conteiner">
+        <div class="promo-content">
+          <div class="promo-text">
+            <h2 class="titulo">¿Tienes hambre ahora?</h2>
+            <p>No esperes más y echa un vistazo a nuestro delicioso menú. ¡Tenemos las mejores hamburguesas de la zona sur!</p>
+            <a href="menu.html" class="btn-menu" target="_blank">
+              <span>Ver menú completo</span>
+              <div class="btn-icon">🍔</div>
+            </a>
+          </div>
+          <div class="promo-image">
+            <img src="../imagenesTT/boom-burger.jpg" alt="Deliciosas hamburguesas">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="contacto-footer">
+    <div class="conteiner">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>¡Que Burger!</h4>
+          <p>Las mejores hamburguesas de zona sur</p>
+          <p>Desde 2019, creando momentos deliciosos</p>
+          <!-- Redes sociales integradas -->
+          <div class="footer-redes">
+            <a href="https://www.whatsapp.com" target="_blank"><img src="../imagenesTT/whatsapp.png" alt="WhatsApp"></a>
+            <a href="https://www.instagram.com" target="_blank"><img src="../imagenesTT/instagram.png" alt="Instagram"></a>
+            <a href="https://www.x.com" target="_blank"><img src="../imagenesTT/twitter.png" alt="Twitter"></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p>📱 11-4165-0275</p>
+          <p>📧 alexanderpasquale1@gmail.com</p>
+        </div>
+        <div class="footer-section">
+          <h4>Ubicación</h4>
+          <p>📍 Quilmes, Buenos Aires</p>
+          <p>🚚 Delivery en toda zona sur</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AlexCorp / Pasquale Alexander. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón para ir arriba -->
+  <div class="boton-arriba">
+    <a href="#ir-arriba" id="scroll-button">
+      <img src="../imagenesTT/scrollup2.png" alt="Ir arriba">
+    </a>
+  </div>
+
+</body>
+
+</html>

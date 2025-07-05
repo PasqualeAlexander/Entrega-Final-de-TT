@@ -8,35 +8,41 @@
   <title>¡Que Burger!</title>
   <link rel="shortcut icon" href="imagenesTT/logo.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link rel="stylesheet" href="estilo.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css" type="text/css">
+  <!-- Módulos JavaScript -->
+  <script src="js/productos.js" defer></script>
+  <script src="js/carrito.js" defer></script>
+  <script src="js/animaciones.js" defer></script>
+  <script src="js/contacto.js" defer></script>
+  <script src="js/filtros.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
 
 <body>
   <a id="ir-arriba"></a>
-  <header>
-    <div class="redes-sociales">
-      <a href="https://www.whatsapp.com" target="_blank"><img src="imagenesTT/whatsapp.png" alt="Whatsapp"></a>
-      <a href="https://www.x.com" target="_blank"><img src="imagenesTT/twitter.png" alt="Twitter"></a>
-      <a href="https://www.instagram.com" target="_blank"><img src="imagenesTT/instagram.png" alt="Instagram"></a>
-    </div>
-    </div>
-    <nav class="nav">
-      <a href="#productos">Productos</a>
-      <a href="contacto.html" target="_blank">Contacto</a>
-      <a href="menu.html" target="_blank">Menú</a>
+  <!-- Hero Section con Header incluido -->
+  <section class="hero-menu">
+    
+    <!-- Navegación -->
+    <nav class="menu-nav">
+      <a href="pages/menu.html" class="nav-link">Menú</a>
+      <a href="pages/sobre-nosotros.html" class="nav-link">Sobre nosotros</a>
+      <a href="pages/contacto.html" class="nav-link">Contacto</a>
     </nav>
-
-    <section class="text-header">
-      <h1>¡Que Burger!</h1>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">¡Que Burger!</h1>
       <h2><b>Las mejores Burger de zona sur</b></h2>
-    </section>
-  </header>
+    </div>
+    <div class="particulas-hero"></div>
+  </section>
 
   <main>
     <section class="conteiner-primera-patre">
       <h2 class="titulo">Lo más destacado del menú</h2>
       <div class="conteiner-sobre-nosotros">
-        <a href="compra.html?product=boom-burger">
+        <a href="pages/menu.html">
           <img src="imagenesTT/pizza.jpg" alt="Pizza" class="imagen-about-us">
         </a>
         <div class="conteiner-text">
@@ -46,9 +52,7 @@
             Lo mejor es que podemos hacerlas personalizadas con los ingredientes que vos elijas.</p>
 
           <h3><span>2</span> Pizzas</h3>
-          <p>Tenemos amplia variedad de sabores. Hacé clic en el siguiente enlace y echale un vistazo a los 24 sabores
-            de pizza que
-            tenemos para vos. Estás a tan solo un clic de tener el mejor sabor en tu mesa.</p>
+          <p>Las pizzas de ¡Que Burger! son mucho más que una opción en el menú… son una experiencia de sabor. Cada una está elaborada con masa casera, esponjosa por dentro y crocante por fuera, cocinada al punto justo para lograr ese dorado irresistible que tanto nos gusta. Usamos ingredientes frescos y seleccionados, desde la mozzarella fundente hasta nuestras salsas caseras llenas de sabor.🔥 En ¡Que Burger! nos apasiona el sabor y lo llevamos a cada porción. ¿Todavía no las probaste? Te estás perdiendo una fiesta de sabor que te va a dejar con ganas de más.</p>
         </div>
       </div>
     </section>
@@ -56,84 +60,85 @@
     <section class="Portafolio" id="productos">
       <div class="conteiner-1">
         <h2 class="titulo">Productos</h2>
+        
         <div class="galery-port">
           <!-- Hamburguesa 1 - Boom Burger -->
-          <div class="imagen-port">
-            <a href="compra.html?product=boom-burger">
+          <div class="imagen-port" data-category="clasica">
+            <a href="pages/menu.html#boom-burger">
               <img src="imagenesTT/hambur4.jpg" alt="Boom Burger">
             </a>
             <div class="hover-galery">
-              <p>Comprar Boom Burger</p>
+              <p>Ver Boom Burger en Menú</p>
             </div>
           </div>
 
           <!-- Hamburguesa 2 - Cheese Burger -->
-          <div class="imagen-port">
-            <a href="compra.html?product=cheese-burger">
+          <div class="imagen-port" data-category="vegetariana">
+            <a href="pages/menu.html#cheese-burger">
               <img src="imagenesTT/hambur2.jpg" alt="Cheese Burger">
             </a>
             <div class="hover-galery">
-              <p>Comprar Cheese Burger</p>
+              <p>Ver Cheese Burger en Menú</p>
             </div>
           </div>
 
           <!-- Hamburguesa 3 - Vegan Burger -->
-          <div class="imagen-port">
-            <a href="compra.html?product=vegan-burger">
+          <div class="imagen-port" data-category="vegana">
+            <a href="pages/menu.html#vegan-burger">
               <img src="imagenesTT/hambur2.jpg" alt="Vegan Burger">
             </a>
             <div class="hover-galery">
-              <p>Comprar Vegan Burger</p>
+              <p>Ver Vegan Burger en Menú</p>
             </div>
           </div>
 
           <!-- Hamburguesa 4 - Happy Bun -->
-          <div class="imagen-port">
-            <a href="compra.html?product=happy-bun">
+          <div class="imagen-port" data-category="vegetariana">
+            <a href="pages/menu.html#happy-bun">
               <img src="imagenesTT/hambur6.jpg" alt="Happy Bun">
             </a>
             <div class="hover-galery">
-              <p>Comprar Happy Bun</p>
+              <p>Ver Happy Bun en Menú</p>
             </div>
           </div>
 
           <!-- Hamburguesa 5 - Space Burger -->
-          <div class="imagen-port">
-            <a href="compra.html?product=space-burger">
+          <div class="imagen-port" data-category="clasica">
+            <a href="pages/menu.html#space-burger">
               <img src="imagenesTT/hambur.jpg" alt="Space Burger">
             </a>
             <div class="hover-galery">
-              <p>Comprar Space Burger</p>
+              <p>Ver Space Burger en Menú</p>
             </div>
           </div>
 
           <!-- Hamburguesa 6 - Classic Burger -->
-          <div class="imagen-port">
-            <a href="compra.html?product=classic-burger">
+          <div class="imagen-port" data-category="clasica">
+            <a href="pages/menu.html#classic-burger">
               <img src="imagenesTT/valenburger.jpg" alt="Classic Burger">
             </a>
             <div class="hover-galery">
-              <p>Comprar Classic Burger</p>
+              <p>Ver Classic Burger en Menú</p>
             </div>
           </div>
 
           <!-- Hamburguesa 7 - Bacon Burger -->
-          <div class="imagen-port">
-            <a href="compra.html?product=bacon-burger">
+          <div class="imagen-port" data-category="clasica">
+            <a href="pages/menu.html#bacon-burger">
               <img src="imagenesTT/hambur5.jpg" alt="Bacon Burger">
             </a>
             <div class="hover-galery">
-              <p>Comprar Bacon Burger</p>
+              <p>Ver Bacon Burger en Menú</p>
             </div>
           </div>
 
           <!-- Hamburguesa 8 - Doble Cheese -->
-          <div class="imagen-port">
-            <a href="compra.html?product=doble-cheese">
+          <div class="imagen-port" data-category="vegetariana">
+            <a href="pages/menu.html#doble-cheese">
               <img src="imagenesTT/hambur.jpg" alt="Doble Cheese">
             </a>
             <div class="hover-galery">
-              <p>Comprar Doble Cheese</p>
+              <p>Ver Doble Cheese en Menú</p>
             </div>
           </div>
         </div>
@@ -146,7 +151,7 @@
         <div class="servicio-cont">
           <!-- Boom Burger -->
           <div class="servicio-ind">
-            <a href="compra.html?product=boom-burger" class="enlace-producto">
+            <a href="pages/menu.html#boom-burger" class="enlace-producto">
               <div class="imagen-boom-burger">
                 <img src="imagenesTT/boom-burger.jpg">
               </div>
@@ -157,7 +162,7 @@
 
           <!-- Vegan Burger -->
           <div class="servicio-ind">
-            <a href="compra.html?product=vegan-burger" class="enlace-producto">
+            <a href="pages/menu.html#vegan-burger" class="enlace-producto">
               <div class="imagen-vegan-burger">
                 <img src="imagenesTT/vegan-burger2.jpg">
               </div>
@@ -168,7 +173,7 @@
 
           <!-- Cheese Burger -->
           <div class="servicio-ind">
-            <a href="compra.html?product=cheese-burger" class="enlace-producto">
+            <a href="pages/menu.html#cheese-burger" class="enlace-producto">
               <div class="imagen-chesse-burger">
                 <img src="imagenesTT/chesse-burger2.jpg">
               </div>
@@ -180,42 +185,40 @@
       </div>
     </section>
 
-    <section class="clientes-conteiner">
-      <h2 class="titulo">Valoración general de los compradores</h2>
-      <div class="card">
-        <img src="imagenesTT/valoracion-clientes.webp" alt="Valoración de clientes">
-        <div class="conteiner-text-card">
-          <h4>Valoración global de los clientes</h4>
-          <p>4.8 ★</p>
-        </div>
-      </div>
-    </section>
   </main>
+
 
   <div class="boton-arriba">
     <a href="#ir-arriba" id="scroll-button">
       <img src="imagenesTT/scrollup2.png" alt="Ir arriba">
     </a>
   </div>
-  <footer>
-    <div class="conteiner-footer">
-      <div class="conteiner-foo">
-        <h4>Numero telefónico</h4>
-        <p>
-          1141650275
-        </p>
+  <footer class="menu-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>¡Que Burger!</h4>
+          <p>Las mejores hamburguesas de zona sur</p>
+          <!-- Redes sociales integradas -->
+          <div class="footer-redes">
+            <a href="https://www.whatsapp.com" target="_blank"><img src="imagenesTT/whatsapp.png" alt="WhatsApp"></a>
+            <a href="https://www.instagram.com" target="_blank"><img src="imagenesTT/instagram.png" alt="Instagram"></a>
+            <a href="https://www.x.com" target="_blank"><img src="imagenesTT/twitter.png" alt="Twitter"></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p>📱 11-4165-0275</p>
+          <p>📧 alexanderpasquale1@gmail.com</p>
+        </div>
+        <div class="footer-section">
+          <h4>Ubicación</h4>
+          <p>📍 Quilmes, Buenos Aires</p>
+        </div>
       </div>
-      <div class="conteiner-foo">
-        <h4>Localidad</h4>
-        <p>
-          Quilmes
-        </p>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AlexCorp / Pasquale Alexander. Todos los derechos reservados.</p>
       </div>
-      <div class="conteiner-foo">
-        <h4>Email</h4>
-        <p>Alexanderpasquale1@gmail.com</p>
-      </div>
-      <h2 class="titulo-final">&copy; AlexCorp / Pasquale Alexander</h2>
     </div>
   </footer>
 </body>

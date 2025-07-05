@@ -1,0 +1,773 @@
+/* Reset y configuración base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Comic Neue', sans-serif;
+  background-color: #e8e6e0;
+  min-height: 100vh;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========== HERO SECTION ========== */
+.hero-sobre-nosotros {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../imagenesTT/portadaburger.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 270px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Redes sociales */
+.redes-sociales {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+  z-index: 1000;
+  display: flex;
+  gap: 20px;
+}
+
+/* Redes sociales al final del body */
+body > .redes-sociales {
+  position: fixed;
+  bottom: 10px;
+  left: 35px;
+  z-index: 9999;
+}
+
+.redes-sociales img {
+  width: 35px;
+  height: 35px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  border-radius: 8px;
+  opacity: 1;
+  visibility: visible;
+}
+
+.redes-sociales img:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) brightness(1.2);
+}
+
+/* Navegación */
+.sobre-nosotros-nav {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  z-index: 1000;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  position: relative;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link:hover {
+  color: white;
+  transform: translateY(-2px);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Contenido del hero */
+.hero-content {
+  display: flex;
+  height: 180px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.hero-title {
+  font-size: 80px;
+  font-weight: 700;
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 auto 5px auto;
+  animation: bounceInDown 1s ease;
+  height: auto;
+  text-align: center;
+  padding: 0;
+}
+
+.hero-content h2 {
+  font-size: 18px;
+  font-weight: 300;
+  color: white;
+  margin: -20px 0 10px 0;
+  padding: 0;
+  text-align: center;
+}
+
+.hero-decoracion {
+  font-size: 2rem;
+  animation: pulse 2s infinite;
+  margin-top: 10px;
+}
+
+.particulas-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ========== SECCIONES GENERALES ========== */
+section {
+  padding: 80px 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  border-radius: 2px;
+}
+
+/* ========== SECCIÓN HISTORIA ========== */
+.historia-section {
+  background: linear-gradient(135deg, #f8f9fa, #ffffff);
+  padding: 40px 0 80px 0;
+}
+
+.historia-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.historia-intro {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+
+.historia-items {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.historia-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.historia-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+}
+
+.historia-icon {
+  font-size: 2.5rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+.historia-info h3 {
+  color: #ff6b35;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.historia-info p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Imagen de historia */
+.historia-imagen {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  margin-top: 30px;
+}
+
+.imagen-principal {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.historia-imagen:hover .imagen-principal {
+  transform: scale(1.05);
+}
+
+.imagen-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.imagen-overlay h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+/* Estilos específicos para la segunda imagen (Cheese Deluxe) */
+.segunda-imagen {
+  margin-top: 40px;
+}
+
+.segunda-imagen .imagen-principal {
+  height: 400px;
+}
+
+/* ========== SECCIÓN FILOSOFÍA ========== */
+.filosofia-section {
+  background: #f2f0ec;
+  padding: 80px 0;
+}
+
+.filosofia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.filosofia-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filosofia-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.05) 0%, transparent 70%);
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.filosofia-card:hover::before {
+  opacity: 1;
+}
+
+.filosofia-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(255, 107, 53, 0.2);
+}
+
+.card-icon {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.filosofia-card h3 {
+  color: #333;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.filosofia-card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ========== SECCIÓN EQUIPO ========== */
+.equipo-section {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  padding: 80px 0;
+}
+
+.equipo-intro {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.equipo-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.equipo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.equipo-item {
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.equipo-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(255, 107, 53, 0.15);
+}
+
+.equipo-item h3 {
+  color: #ff6b35;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.equipo-item p {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Imagen del equipo */
+.imagen-chef {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.imagen-chef img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.imagen-chef:hover img {
+  transform: scale(1.05);
+}
+
+.imagen-chef-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
+
+.imagen-chef-overlay h3 {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+
+/* ========== SECCIÓN CTA ========== */
+.cta-section {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  text-align: center;
+  padding: 80px 0;
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-cta-primario,
+.btn-cta-secundario {
+  padding: 15px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+}
+
+.btn-cta-primario {
+  background: white;
+  color: #ff6b35;
+}
+
+.btn-cta-primario:hover {
+  background: transparent;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cta-secundario {
+  background: transparent;
+  color: white;
+}
+
+.btn-cta-secundario:hover {
+  background: white;
+  color: #ff6b35;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ========== FOOTER ========== */
+.sobre-nosotros-footer {
+  background: #333;
+  color: white;
+  padding: 60px 0 30px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-section h4 {
+  color: #ff6b35;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+.footer-section p {
+  color: #ccc;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  line-height: 1.6;
+}
+
+/* Estilos para redes sociales en el footer */
+.footer-redes {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.footer-redes a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-redes a:hover {
+  background: #ff6b35;
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+}
+
+.footer-redes img {
+  width: 24px;
+  height: 24px;
+  filter: none;
+  transition: all 0.3s ease;
+  opacity: 1;
+  visibility: visible;
+}
+
+.footer-redes a:hover img {
+  filter: brightness(1.1) contrast(1.1);
+  transform: scale(1.1);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  border-top: 1px solid #555;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+/* ========== BOTÓN SCROLL UP ========== */
+.boton-arriba {
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.boton-arriba img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+}
+
+.boton-arriba a {
+  display: block;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+}
+
+.boton-arriba img:hover {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+}
+
+/* ========== ANIMACIONES ========== */
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1024px) {
+  .historia-content,
+  .equipo-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 60px;
+  }
+  
+  .hero-content h2 {
+    font-size: 16px;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .filosofia-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn-cta-primario,
+  .btn-cta-secundario {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  .sobre-nosotros-nav {
+    top: 15px;
+    right: 15px;
+    gap: 10px;
+  }
+  
+  .nav-link {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+  
+.redes-sociales {
+    top: 15px;
+    left: 15px;
+    gap: 15px;
+  }
+
+  @media (max-width: 768px) {
+    /* Ocultar las redes del header en móvil */
+    .hero-sobre-nosotros .redes-sociales {
+      display: none;
+    }
+    
+    /* Mostrar las del final en móvil */
+    body > .redes-sociales {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 8px 15px;
+      border-radius: 25px;
+    }
+  }
+  
+  .redes-sociales img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 45px;
+  }
+  
+  .hero-content h2 {
+    font-size: 14px;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+  
+  section {
+    padding: 60px 0;
+  }
+  
+  .historia-item,
+  .equipo-item,
+  .filosofia-card {
+    padding: 25px 20px;
+  }
+  
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+  
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+

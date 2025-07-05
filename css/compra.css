@@ -1,3 +1,60 @@
+/* Estilos generales */
+body {
+	font-family: 'Comic Sans MS', Arial, Verdana, sans-serif;
+	background-color: #fdf6f0;
+}
+
+/* Estilos para redes sociales */
+.redes-sociales {
+	position: absolute;
+	top: 30px;
+	left: 35px;
+	z-index: 1000;
+	display: flex;
+	gap: 20px;
+}
+
+/* Redes sociales al final del body */
+body > .redes-sociales {
+  position: fixed;
+  bottom: 10px;
+  left: 35px;
+  z-index: 9999;
+}
+
+@media (max-width: 768px) {
+    /* Ocultar las redes del header en móvil */
+    header .redes-sociales {
+        display: none;
+    }
+    
+    /* Mostrar las del final en móvil */
+    body > .redes-sociales {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        gap: 15px;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 8px 15px;
+        border-radius: 25px;
+    }
+}
+
+.redes-sociales img {
+	width: 30px;
+	height: 30px;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+	border-radius: 8px;
+}
+
+.redes-sociales img:hover {
+	transform: scale(1.2) rotate(10deg);
+	filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8)) brightness(1.2);
+	animation: pulsoRedes 0.6s ease-in-out;
+}
+
 /* Estilos para el carrito */
 .catalogo-con-carrito {
 	color: #fff;

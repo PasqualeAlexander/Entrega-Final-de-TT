@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>¡Que Menú! - Las Mejores Hamburguesas</title>
+
+  <link rel="shortcut icon" href="../imagenesTT/icono-catalogo.png" />
+  <link rel="stylesheet" href="../css/menu-new.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Módulos JavaScript -->
+  <script src="../js/api-manager.js" defer></script>
+  <script src="../js/productos.js" defer></script>
+  <script src="../js/carrito.js" defer></script>
+  <script src="../js/animaciones.js" defer></script>
+  <script src="../js/contacto.js" defer></script>
+  <script src="../js/filtros.js" defer></script>
+  <script src="../js/main.js" defer></script>
+  <script src="../js/menu.js" defer></script>
+</head>
+
+<body>
+  <a id="ir-arriba"></a>
+  <!-- Hero Section con Header incluido -->
+  <section class="hero-menu">
+    
+    <!-- Navegación -->
+    <nav class="menu-nav">
+      <a href="../index.html" class="nav-link">Inicio</a>
+      <a href="sobre-nosotros.html" class="nav-link">Sobre nosotros</a>
+      <a href="contacto.html" class="nav-link">Contacto</a>
+    </nav>
+    
+    <div class="hero-content">
+      <h1 class="hero-title">¡NUESTRO MENÚ!</h1>
+      <h2><b>Descubre nuestras deliciosas hamburguesas artesanales</b></h2>
+      <div class="hero-decoracion">🍔 ⭐ 🍔</div>
+    </div>
+    <div class="particulas-hero"></div>
+  </section>
+
+  <!-- Sección de Hamburguesas -->
+  <section class="menu-section">
+    <div class="container">
+      <!-- Filtros de productos -->
+      <div class="filtros-container">
+        <h3>Filtrar por tipo:</h3>
+        <div class="filtros-botones">
+          <button class="filtro-btn active" data-filter="all">Todas</button>
+          <button class="filtro-btn" data-filter="vegana">Veganas</button>
+          <button class="filtro-btn" data-filter="vegetariana">Vegetarianas</button>
+          <button class="filtro-btn" data-filter="clasica">Clásicas</button>
+        </div>
+      </div>
+      
+      <div class="menu-grid">
+        <!-- Boom Burger -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="19000" data-filter-category="clasica" id="boom-burger">
+          <div class="item-image-container">
+            <img src="../imagenesTT/boom-burger.jpg" alt="Boom Burger" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$19000</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Boom Burger</h3>
+            <p class="item-description">Triple carne, cheddar, bacon, huevo y cebolla caramelizada. ¡Una explosión de sabor!</p>
+            <div class="item-details">
+              <span class="precio">$19000</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn" data-tipo="simple" data-precio="13000" data-producto="hamburguesa-1-simple">Simple - $13000</button>
+                  <button class="opcion-btn" data-tipo="doble" data-precio="16000" data-producto="hamburguesa-1-doble">Doble - $16000</button>
+                  <button class="opcion-btn active" data-tipo="triple" data-precio="19000" data-producto="hamburguesa-1-triple">Triple - $19000</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="23000" data-producto="hamburguesa-1-cuadruple">Cuadruple - $23000</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-1-triple" data-title="Boom Burger" data-price="19000" data-image="../imagenesTT/boom-burger.jpg" data-description="Triple carne, cheddar, bacon, huevo y cebolla caramelizada">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cheese Burger -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="14000" data-filter-category="clasica" id="cheese-burger">
+          <div class="item-image-container">
+            <img src="../imagenesTT/chesse-burger2.jpg" alt="Cheese Burger" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$14000</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Cheese Burger</h3>
+            <p class="item-description">Doble carne, cheddar, bacon y cebolla caramelizada. El clásico reinventado.</p>
+            <div class="item-details">
+              <span class="precio">$14000</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn" data-tipo="simple" data-precio="11000" data-producto="hamburguesa-2-simple">Simple - $11000</button>
+                  <button class="opcion-btn active" data-tipo="doble" data-precio="14000" data-producto="hamburguesa-2-doble">Doble - $14000</button>
+                  <button class="opcion-btn" data-tipo="triple" data-precio="17000" data-producto="hamburguesa-2-triple">Triple - $17000</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="21000" data-producto="hamburguesa-2-cuadruple">Cuadruple - $21000</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-2-doble" data-title="Cheese Burger" data-price="14000" data-image="../imagenesTT/chesse-burger2.jpg" data-description="Doble carne, cheddar, bacon y cebolla caramelizada">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vegan Burger -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="16000" data-filter-category="vegana" id="vegan-burger">
+          <div class="item-image-container">
+            <img src="../imagenesTT/vegan-burger2.jpg" alt="Vegan Burger" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$16000</span>
+              <span class="etiqueta-especial">🌱 VEGANA</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Vegan Burger <span class="badge-vegan">🌱</span></h3>
+            <p class="item-description">Doble medallón de lentejas y garbanzo, morrón, tomate y cebolla caramelizada.</p>
+            <div class="item-details">
+              <span class="precio">$16000</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn" data-tipo="simple" data-precio="16000" data-producto="hamburguesa-3-simple">Simple - $16000</button>
+                  <button class="opcion-btn active" data-tipo="doble" data-precio="22000" data-producto="hamburguesa-3-doble">Doble - $22000</button>
+                  <button class="opcion-btn" data-tipo="triple" data-precio="28000" data-producto="hamburguesa-3-triple">Triple - $28000</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="38000" data-producto="hamburguesa-3-cuadruple">Cuadruple - $38000</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-3-doble" data-title="Vegan Burger" data-price="22000" data-image="../imagenesTT/vegan-burger2.jpg" data-description="Doble medallón de lentejas y garbanzo, morrón, tomate y cebolla caramelizada">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Happy Bun -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="15000" data-filter-category="vegetariana" id="happy-bun">
+          <div class="item-image-container">
+            <img src="../imagenesTT/hambur6.jpg" alt="Happy Bun" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$15000</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Happy Bun</h3>
+            <p class="item-description">Nuestra hamburguesa especial que te hará sonreír con cada bocado. Carne vebolla morada, tomate, lechuga y salsa tasty.</p>
+            <div class="item-details">
+              <span class="precio">$15000</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn" data-tipo="simple" data-precio="12000" data-producto="hamburguesa-4-simple">Simple - $12000</button>
+                  <button class="opcion-btn active" data-tipo="doble" data-precio="15000" data-producto="hamburguesa-4-doble">Doble - $15000</button>
+                  <button class="opcion-btn" data-tipo="triple" data-precio="18000" data-producto="hamburguesa-4-triple">Triple - $18000</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="22000" data-producto="hamburguesa-4-cuadruple">Cuadruple - $22000</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-4-doble" data-title="Happy Bun" data-price="15000" data-image="../imagenesTT/hambur6.jpg" data-description="Nuestra hamburguesa especial que te hará sonreír con cada bocado">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Space Burger -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="14500" data-filter-category="clasica" id="space-burger">
+          <div class="item-image-container">
+            <img src="../imagenesTT/hambur.jpg" alt="Space Burger" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$14500</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Space Burger</h3>
+            <p class="item-description">Una hamburguesa futurista que te llevará a otro planeta de sabores. Medallón de carne, chedar, cebolla morada, pepino, tomate y apio para que te deleites como nunca.</p>
+            <div class="item-details">
+              <span class="precio">$14500</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn" data-tipo="simple" data-precio="11500" data-producto="hamburguesa-5-simple">Simple - $11500</button>
+                  <button class="opcion-btn active" data-tipo="doble" data-precio="14500" data-producto="hamburguesa-5-doble">Doble - $14500</button>
+                  <button class="opcion-btn" data-tipo="triple" data-precio="17500" data-producto="hamburguesa-5-triple">Triple - $17500</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="21500" data-producto="hamburguesa-5-cuadruple">Cuadruple - $21500</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-5-doble" data-title="Space Burger" data-price="14500" data-image="../imagenesTT/hambur.jpg" data-description="Una hamburguesa futurista que te llevará a otro planeta de sabores">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Classic Burger -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="10000" data-filter-category="clasica" id="classic-burger">
+          <div class="item-image-container">
+            <img src="../imagenesTT/valenburger.jpg" alt="Classic Burger" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$10000</span>
+              <span class="etiqueta-especial">💰 ECONÓMICA</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Classic Burger <span class="badge-economica">💰</span></h3>
+            <p class="item-description">La clásica hamburguesa de siempre, con el sabor tradicional que nunca pasa de moda.</p>
+            <div class="item-details">
+              <span class="precio">$10000</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn active" data-tipo="simple" data-precio="10000" data-producto="hamburguesa-6-simple">Simple - $10000</button>
+                  <button class="opcion-btn" data-tipo="doble" data-precio="15000" data-producto="hamburguesa-6-doble">Doble - $15000</button>
+                  <button class="opcion-btn" data-tipo="triple" data-precio="20000" data-producto="hamburguesa-6-triple">Triple - $20000</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="25000" data-producto="hamburguesa-6-cuadruple">Cuadruple - $25000</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-6-simple" data-title="Classic Burger" data-price="10000" data-image="../imagenesTT/valenburger.jpg" data-description="La clásica hamburguesa de siempre, con el sabor tradicional que nunca pasa de moda">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bacon Burger -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="13500" data-filter-category="clasica" id="bacon-burger">
+          <div class="item-image-container">
+            <img src="../imagenesTT/hambur5.jpg" alt="Bacon Burger" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$13500</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Bacon Burger</h3>
+            <p class="item-description">Hamburguesa con extra bacon crujiente para los amantes del sabor intenso.</p>
+            <div class="item-details">
+              <span class="precio">$13500</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn" data-tipo="simple" data-precio="10500" data-producto="hamburguesa-7-simple">Simple - $10500</button>
+                  <button class="opcion-btn active" data-tipo="doble" data-precio="13500" data-producto="hamburguesa-7-doble">Doble - $13500</button>
+                  <button class="opcion-btn" data-tipo="triple" data-precio="16500" data-producto="hamburguesa-7-triple">Triple - $16500</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="20500" data-producto="hamburguesa-7-cuadruple">Cuadruple - $20500</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-7-doble" data-title="Bacon Burger" data-price="13500" data-image="../imagenesTT/hambur5.jpg" data-description="Hamburguesa con extra bacon crujiente para los amantes del sabor intenso">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doble Cheese -->
+        <div class="menu-item" data-categoria="hamburguesa" data-precio="15500" data-filter-category="vegetariana" id="doble-cheese">
+          <div class="item-image-container">
+            <img src="../imagenesTT/hambur.jpg" alt="Doble Cheese" class="item-image">
+            <div class="image-overlay">
+              <span class="precio-destacado">$15500</span>
+            </div>
+          </div>
+          <div class="item-content">
+            <h3 class="item-title">Doble Cheese</h3>
+            <p class="item-description">Doble queso cheddar derretido y carne jugosa en perfecta armonía.</p>
+            <div class="item-details">
+              <span class="precio">$15500</span>
+            <div class="item-actions">
+              <div class="opciones-hamburguesa">
+                <label>Elige tu opción:</label>
+                <div class="opciones-botones">
+                  <button class="opcion-btn" data-tipo="simple" data-precio="12500" data-producto="hamburguesa-8-simple">Simple - $12500</button>
+                  <button class="opcion-btn active" data-tipo="doble" data-precio="15500" data-producto="hamburguesa-8-doble">Doble - $15500</button>
+                  <button class="opcion-btn" data-tipo="triple" data-precio="18500" data-producto="hamburguesa-8-triple">Triple - $18500</button>
+                  <button class="opcion-btn" data-tipo="cuadruple" data-precio="23500" data-producto="hamburguesa-8-cuadruple">Cuadruple - $23500</button>
+                </div>
+              </div>
+              <button class="btn-agregar-carrito-menu" data-producto="hamburguesa-8-doble" data-title="Doble Cheese" data-price="15500" data-image="../imagenesTT/hambur.jpg" data-description="Doble queso cheddar derretido y carne jugosa en perfecta armonía">➕ Agregar al Carrito</button>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Información Adicional -->
+  <section class="info-section">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="info-icon">🕒</div>
+          <h3>Horarios</h3>
+          <p>Lunes a Domingo<br>18:00 - 00:00</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">🚚</div>
+          <h3>Delivery</h3>
+          <p>Envío gratis<br>en compras +$3000</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">⭐</div>
+          <h3>Calidad</h3>
+          <p>Ingredientes<br>100% frescos</p>
+        </div>
+        <div class="info-card">
+          <div class="info-icon">📱</div>
+          <h3>Pedidos</h3>
+          <p>WhatsApp<br>11-4165-0275</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="menu-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>¡Que Burger!</h4>
+          <p>Las mejores hamburguesas de zona sur</p>
+          <!-- Redes sociales integradas -->
+          <div class="footer-redes">
+            <a href="https://www.whatsapp.com" target="_blank"><img src="../imagenesTT/whatsapp.png" alt="WhatsApp"></a>
+            <a href="https://www.instagram.com" target="_blank"><img src="../imagenesTT/instagram.png" alt="Instagram"></a>
+            <a href="https://www.x.com" target="_blank"><img src="../imagenesTT/twitter.png" alt="Twitter"></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Contacto</h4>
+          <p>📱 11-4165-0275</p>
+          <p>📧 alexanderpasquale1@gmail.com</p>
+        </div>
+        <div class="footer-section">
+          <h4>Ubicación</h4>
+          <p>📍 Quilmes, Buenos Aires</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 AlexCorp / Pasquale Alexander. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Botón para ir arriba -->
+  <div id="scroll-button" class="boton-arriba">
+    <img src="../imagenesTT/scrollup2.png" alt="Ir arriba">
+  </div>
+
+  <script>
+    // Función de scroll up inmediata
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    // Configurar el botón cuando todo esté cargado
+    window.addEventListener('load', function() {
+      const scrollButton = document.getElementById('scroll-button');
+      const scrollImg = document.querySelector('.boton-arriba img');
+      const container = document.querySelector('.boton-arriba');
+      
+      // Función para manejar el click
+      function handleScrollClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        scrollToTop();
+      }
+      
+      // Configurar eventos de click
+      if (scrollButton) {
+        scrollButton.addEventListener('click', handleScrollClick);
+        scrollButton.style.cursor = 'pointer';
+      }
+      
+      if (scrollImg) {
+        scrollImg.addEventListener('click', handleScrollClick);
+        scrollImg.style.cursor = 'pointer';
+      }
+      
+      if (container) {
+        container.addEventListener('click', handleScrollClick);
+        container.style.cursor = 'pointer';
+      }
+      
+      // Función para mostrar/ocultar el botón según el scroll
+      function toggleScrollButton() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const showThreshold = windowHeight * 0.3; // Mostrar después de bajar 30% de la pantalla
+        
+        if (scrollTop > showThreshold) {
+          // Mostrar botón
+          if (container) {
+            container.classList.add('visible');
+          }
+        } else {
+          // Ocultar botón
+          if (container) {
+            container.classList.remove('visible');
+          }
+        }
+      }
+      
+      // Ejecutar al cargar la página
+      toggleScrollButton();
+      
+      // Ejecutar en cada scroll
+      window.addEventListener('scroll', toggleScrollButton);
+      
+    });
+  </script>
+
+  <!-- Botón flotante para ver carrito -->
+  <button onclick="carrito.alternarCarrito()" class="carrito-flotante-menu" id="carrito-flotante">
+  🛒 Carrito 
+    <span class="carrito-contador-menu" id="carrito-contador-menu" style="display: none;"></span>
+  </button>
+
+  <script src="../js/menu-inline.js" defer></script>
+  
+
+</body>
+
+</html>

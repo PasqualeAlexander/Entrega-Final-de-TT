@@ -67,7 +67,9 @@ class CarritoCompras {
     }
 
     eliminarProducto(productoId) {
-        this.items = this.items.filter(item => item.id !== productoId);
+        this.items = this.items.findIndex(item => item.id === productoId) >= 0 ? 
+                    this.items.filter(item => item.id !== productoId) : 
+                    this.items;
         this.storage.guardarCarrito(this.items);
         this.actualizarUI();
     }

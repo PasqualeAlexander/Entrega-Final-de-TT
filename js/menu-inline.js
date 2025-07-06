@@ -1,14 +1,3 @@
-// Mapeo de IDs de hamburguesas a categorías para filtros
-const categoriasMapping = {
-  'hamburguesa-1': 'clasica',  // Boom Burger
-  'hamburguesa-2': 'clasica',  // Cheese Burger
-  'hamburguesa-3': 'vegana',   // Vegan Burger
-  'hamburguesa-4': 'vegetariana', // Happy Bun
-  'hamburguesa-5': 'clasica',  // Space Burger
-  'hamburguesa-6': 'clasica',  // Classic Burger
-  'hamburguesa-7': 'clasica',  // Bacon Burger
-  'hamburguesa-8': 'vegetariana'  // Doble Cheese
-};
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {

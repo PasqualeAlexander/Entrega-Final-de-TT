@@ -1,0 +1,16 @@
+/* Estilos para botones de agregar al carrito */
+.btn-agregar-carrito {
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn-agregar-carrito:hover {
+    background: #e55a2e;
+}

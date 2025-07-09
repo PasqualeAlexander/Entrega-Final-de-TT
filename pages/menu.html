@@ -11,12 +11,15 @@
   <link rel="shortcut icon" href="../imagenesTT/icono-catalogo.png" />
   <link rel="stylesheet" href="../css/menu-new.css" />
   <link rel="stylesheet" href="../css/carrito.css" />
+  <link rel="stylesheet" href="../css/scroll-up.css" />
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Módulos JavaScript -->
+  <script src="../js/scroll-up.js" defer></script>
   <script src="../js/api-manager.js" defer></script>
   <script src="../js/carrito.js" defer></script>
   <script src="../js/main.js" defer></script>
+  <script src="../js/menu.js" defer></script>
 </head>
 
 <body>
@@ -109,76 +112,7 @@
   </footer>
 
 
-  <!-- Botón para ir arriba -->
-  <div id="scroll-button" class="boton-arriba">
-    <img src="../imagenesTT/scrollup2.png" alt="Ir arriba">
-  </div>
 
-  <script>
-    // Función de scroll up inmediata
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-    
-    // Configurar el botón cuando todo esté cargado
-    window.addEventListener('load', function() {
-      const scrollButton = document.getElementById('scroll-button');
-      const scrollImg = document.querySelector('.boton-arriba img');
-      const container = document.querySelector('.boton-arriba');
-      
-      // Función para manejar el click
-      function handleScrollClick(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        scrollToTop();
-      }
-      
-      // Configurar eventos de click
-      if (scrollButton) {
-        scrollButton.addEventListener('click', handleScrollClick);
-        scrollButton.style.cursor = 'pointer';
-      }
-      
-      if (scrollImg) {
-        scrollImg.addEventListener('click', handleScrollClick);
-        scrollImg.style.cursor = 'pointer';
-      }
-      
-      if (container) {
-        container.addEventListener('click', handleScrollClick);
-        container.style.cursor = 'pointer';
-      }
-      
-      // Función para mostrar/ocultar el botón según el scroll
-      function toggleScrollButton() {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        const showThreshold = windowHeight * 0.3; // Mostrar después de bajar 30% de la pantalla
-        
-        if (scrollTop > showThreshold) {
-          // Mostrar botón
-          if (container) {
-            container.classList.add('visible');
-          }
-        } else {
-          // Ocultar botón
-          if (container) {
-            container.classList.remove('visible');
-          }
-        }
-      }
-      
-      // Ejecutar al cargar la página
-      toggleScrollButton();
-      
-      // Ejecutar en cada scroll
-      window.addEventListener('scroll', toggleScrollButton);
-      
-    });
-  </script>
 
   <!-- Botón flotante para ver carrito -->
   <button onclick="carrito.alternarCarrito()" class="carrito-flotante-menu" id="carrito-flotante">
@@ -186,7 +120,12 @@
     <span class="carrito-contador-menu" id="carrito-contador-menu" style="display: none;"></span>
   </button>
 
-  
+  <!-- Botón de scroll up -->
+  <div class="boton-arriba" id="scroll-button">
+    <a href="#ir-arriba">
+      <img src="../imagenesTT/scrollup2.png" alt="Ir arriba">
+    </a>
+  </div>
 
 </body>
 

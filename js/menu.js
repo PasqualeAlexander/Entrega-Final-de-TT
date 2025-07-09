@@ -325,4 +325,9 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Configurar vibración
   configurarVibracion();
+  
+  // Configurar scroll up
+  if (typeof inicializarScrollUp === 'function') {
+    inicializarScrollUp();
+  }
 });

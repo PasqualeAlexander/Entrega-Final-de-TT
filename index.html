@@ -11,7 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/estilo.css" type="text/css">
   <link rel="stylesheet" href="css/carrito.css" type="text/css">
+  <link rel="stylesheet" href="css/scroll-up.css" type="text/css">
   <!-- Módulos JavaScript esenciales -->
+  <script src="js/scroll-up.js" defer></script>
   <script src="js/carrito.js" defer></script>
   <script src="js/main.js" defer></script>
 </head>
@@ -32,7 +34,6 @@
       <h1 class="hero-title">¡Que Burger!</h1>
       <h2><b>Las mejores Burger de zona sur</b></h2>
     </div>
-    <div class="particulas-hero"></div>
   </section>
 
   <main>
@@ -184,12 +185,13 @@
 
   </main>
 
-
-  <div class="boton-arriba">
-    <a href="#ir-arriba" id="scroll-button">
+  <!-- Botón de scroll up -->
+  <div class="boton-arriba" id="scroll-button">
+    <a href="#ir-arriba">
       <img src="imagenesTT/scrollup2.png" alt="Ir arriba">
     </a>
   </div>
+
   <footer class="menu-footer">
     <div class="container">
       <div class="footer-content">
@@ -218,6 +220,7 @@
       </div>
     </div>
   </footer>
+
 </body>
 
 </html>

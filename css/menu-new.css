@@ -907,6 +907,9 @@ body {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  background: white;
+  padding: 8px;
+  box-sizing: border-box;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
   opacity: 1;

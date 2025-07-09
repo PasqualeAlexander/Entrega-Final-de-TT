@@ -301,20 +301,6 @@ function configurarBotonesCompra() {
             const botonCarrito = document.createElement('button');
             botonCarrito.textContent = 'Agregar al Carrito';
             botonCarrito.className = 'btn-agregar-carrito';
-            botonCarrito.style.cssText = `
-                background: #ff6b35;
-                color: white;
-                border: none;
-                padding: 8px 16px;
-                border-radius: 5px;
-                cursor: pointer;
-                margin-top: 10px;
-                font-weight: bold;
-                transition: background 0.3s ease;
-            `;
-            
-            botonCarrito.onmouseover = () => botonCarrito.style.background = '#e55a2e';
-            botonCarrito.onmouseout = () => botonCarrito.style.background = '#ff6b35';
             
             // Insertar el botón después del enlace
             const contenedor = enlace.closest('.servicio-ind') || enlace.closest('.imagen-port');

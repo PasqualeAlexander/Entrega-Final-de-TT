@@ -1,0 +1,193 @@
+/* ========== BOTÓN SCROLL UP ESTANDARIZADO ========== */
+/* Estilos base para el contenedor del botón */
+.boton-arriba {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+    z-index: 1002;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(135deg, #ff6b35, #e55a2e);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    /* Estado inicial: OCULTO */
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+/* Enlace dentro del botón */
+.boton-arriba a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* Imagen del botón */
+.boton-arriba img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    opacity: 1;
+    display: block;
+    visibility: visible;
+    cursor: pointer;
+}
+
+/* Clase para mostrar el botón */
+.boton-arriba.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+/* Efectos hover */
+.boton-arriba:hover img {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+}
+
+/* Soporte para ID específico (compatibilidad con JavaScript) */
+#scroll-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    max-height: 60px;
+    z-index: 1002;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+#scroll-button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+#scroll-button img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    opacity: 1;
+    display: block;
+    visibility: visible;
+    cursor: pointer;
+}
+
+#scroll-button.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+#scroll-button:hover img {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 768px) {
+    .boton-arriba,
+    #scroll-button {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        max-width: 50px;
+        max-height: 50px;
+    }
+    
+    .boton-arriba img,
+    #scroll-button img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .boton-arriba,
+    #scroll-button {
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        max-width: 45px;
+        max-height: 45px;
+    }
+    
+    .boton-arriba img,
+    #scroll-button img {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* ========== COMPATIBILIDAD CON PÁGINAS ESPECÍFICAS ========== */
+/* Para evitar conflictos con otros elementos flotantes */
+.menu-page .boton-arriba,
+.menu-page #scroll-button {
+    right: 20px;
+    bottom: 80px;
+}
+
+/* Para páginas con carrito flotante */
+.page-with-cart .boton-arriba,
+.page-with-cart #scroll-button {
+    right: 20px;
+    bottom: 80px;
+}
+
+/* Asegurar que funcione en todas las páginas */
+body .boton-arriba,
+body #scroll-button {
+    display: grid;
+    place-items: center;
+}

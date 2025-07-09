@@ -9,7 +9,7 @@ class AnimacionesManager {
         this.configurarEfectosHover();
         this.configurarAnimacionBotonArriba();
         this.configurarAnimacionesCarga();
-        this.configurarParticulas();
+        // this.configurarParticulas(); // Animaciones de partículas desactivadas
         this.configurarAnimacionesProductos();
     }
 
@@ -91,41 +91,30 @@ class AnimacionesManager {
     }
 
     configurarAnimacionBotonArriba() {
-        const botonArriba = document.getElementById('scroll-button');
+        // Buscar el botón por ID o por clase
+        const botonArriba = document.getElementById('scroll-button') || document.querySelector('.boton-arriba');
         if (!botonArriba) return;
 
-        botonArriba.style.opacity = '0';
-        botonArriba.style.transform = 'translateY(20px) scale(0.8)';
-        botonArriba.style.pointerEvents = 'none';
-        botonArriba.style.display = 'block';
-        botonArriba.style.visibility = 'visible';
-
+        // Configurar funcionalidad del botón usando el nuevo sistema de clases
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             const windowHeight = window.innerHeight;
             const showThreshold = windowHeight * 0.3;
 
             if (scrollY > showThreshold) {
-                botonArriba.style.opacity = '1';
-                botonArriba.style.transform = 'translateY(0) scale(1)';
-                botonArriba.style.pointerEvents = 'auto';
+                botonArriba.classList.add('visible');
             } else {
-                botonArriba.style.opacity = '0';
-                botonArriba.style.transform = 'translateY(20px) scale(0.8)';
-                botonArriba.style.pointerEvents = 'none';
+                botonArriba.classList.remove('visible');
             }
         });
 
-        botonArriba.addEventListener('mouseenter', function() {
-            if (this.style.opacity === '1') {
-                this.style.transform = 'translateY(-3px) scale(1.1)';
-            }
-        });
-
-        botonArriba.addEventListener('mouseleave', function() {
-            if (this.style.opacity === '1') {
-                this.style.transform = 'translateY(0) scale(1)';
-            }
+        // Evento de click para scroll suave
+        botonArriba.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
 
@@ -161,52 +150,13 @@ class AnimacionesManager {
     }
 
     configurarParticulas() {
-        const header = document.querySelector('header, .hero-menu, .hero-sobre-nosotros, .hero-section');
-        if (!header) return;
-
-        const contenedorParticulas = document.createElement('div');
-        contenedorParticulas.className = 'particulas-contenedor';
-        contenedorParticulas.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            overflow: hidden;
-        `;
-        header.style.position = 'relative';
-        header.appendChild(contenedorParticulas);
-
-        for (let i = 0; i < 15; i++) {
-            setTimeout(() => {
-                this.crearParticula(contenedorParticulas);
-            }, i * 200);
-        }
+        // Método desactivado - animaciones de partículas removidas
+        return;
     }
 
     crearParticula(contenedor) {
-        const particula = document.createElement('div');
-        particula.className = 'particula';
-        
-        const tamaño = Math.random() * 6 + 2;
-        const posicionX = Math.random() * 100;
-        const duracion = Math.random() * 10 + 15;
-        const retraso = Math.random() * 5;
-        
-        particula.style.cssText = `
-            position: absolute;
-            width: ${tamaño}px;
-            height: ${tamaño}px;
-            background: rgba(255, 107, 53, ${Math.random() * 0.5 + 0.3});
-            border-radius: 50%;
-            left: ${posicionX}%;
-            bottom: -10px;
-            animation: flotar ${duracion}s ease-in-out ${retraso}s infinite;
-            box-shadow: 0 0 ${tamaño * 2}px rgba(255, 107, 53, 0.5);
-        `;
-        
-        contenedor.appendChild(particula);
+        // Método desactivado - animaciones de partículas removidas
+        return;
     }
 
     configurarAnimacionesProductos() {
@@ -297,22 +247,7 @@ function agregarEstilosAnimaciones() {
             }
         }
 
-        @keyframes flotar {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+        /* Animación de partículas removida - flotar desactivado */
 
         @keyframes pulso {
             0% {
@@ -470,9 +405,7 @@ function agregarEstilosAnimaciones() {
                 transform: none;
             }
             
-            .particulas-contenedor {
-                display: none;
-            }
+            /* Regla de partículas removida - ya no es necesaria */
         }
 
         @media (prefers-reduced-motion: reduce) {

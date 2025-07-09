@@ -67,8 +67,11 @@ function inicializarContacto() {
         });
     }
     
-    // Configurar botón de ir arriba
-    if (botonArriba) {
+    // Configurar scroll up usando la función reutilizable
+    if (typeof inicializarScrollUp === 'function') {
+        inicializarScrollUp();
+    } else if (botonArriba) {
+        // Fallback si no está disponible la función reutilizable
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 botonArriba.style.opacity = '1';
@@ -171,3 +174,6 @@ function mostrarMensajeExito() {
         }
     }, 4000);
 }
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', inicializarContacto);

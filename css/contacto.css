@@ -455,6 +455,9 @@ body > .redes-sociales {
 	border-radius: 50%;
 	width: 40px;
 	height: 40px;
+	background: white;
+	padding: 8px;
+	box-sizing: border-box;
 	transition: all 0.3s ease;
 }
 

@@ -362,7 +362,7 @@ class CarritoCompras {
                     
                     // FORZAR que se muestre incluso si estaba oculto por limpieza
                     contador.textContent = cantidadTotal;
-                    contador.style.display = 'inline';
+                    contador.style.display = 'inline-flex';
                     contador.style.visibility = 'visible';
                     contador.style.opacity = '1';
                     // Resetear cualquier posicionamiento extraño
@@ -390,7 +390,7 @@ class CarritoCompras {
                 contador.removeAttribute('data-limpiado');
                 
                 contador.textContent = cantidadTotal;
-                contador.style.display = 'inline';
+                contador.style.display = 'inline-flex';
                 contador.style.visibility = 'visible';
                 contador.style.opacity = '1';
             } else {

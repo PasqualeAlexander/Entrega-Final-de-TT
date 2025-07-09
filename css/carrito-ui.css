@@ -4,7 +4,7 @@
 .carrito-contador,
 .contador-carrito,
 .carrito-contador-menu {
-    display: inline;
+    display: inline-flex;
     visibility: visible;
     opacity: 1;
     transition: all 0.3s ease;

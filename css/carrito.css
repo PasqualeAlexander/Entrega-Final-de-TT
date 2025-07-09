@@ -61,11 +61,16 @@
     background: linear-gradient(135deg, #fff, #f8f9fa);
     color: #ff6b35;
     border-radius: 50%;
-    padding: 4px 10px;
+    padding: 0;
     margin-left: 10px;
     font-size: 13px;
     font-weight: 800;
     min-width: 24px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
     border: 2px solid rgba(255, 107, 53, 0.2);

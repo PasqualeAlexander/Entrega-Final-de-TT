@@ -1,4 +1,3 @@
-// Módulo para manejo de la interfaz de usuario del carrito
 class CarritoUI {
     constructor() {
         this.contadoresIds = [
@@ -16,7 +15,6 @@ class CarritoUI {
         ];
     }
 
-    // Actualizar contador del carrito
     actualizarContador(cantidadTotal) {
         // Actualizar por ID
         this.contadoresIds.forEach(id => {
@@ -36,7 +34,6 @@ class CarritoUI {
         this.forzarVisibilidadBotones();
     }
 
-    // Configurar un contador individual
     configurarContador(contador, cantidadTotal) {
         if (cantidadTotal > 0) {
             // Quitar la marca de limpiado si existe
@@ -63,7 +60,6 @@ class CarritoUI {
         }
     }
 
-    // Forzar la visibilidad de todos los botones del carrito
     forzarVisibilidadBotones() {
         this.botonesCarritoIds.forEach(id => {
             const elemento = document.getElementById(id);
@@ -91,7 +87,6 @@ class CarritoUI {
         this.protegerBotonesMenu();
     }
 
-    // Restaurar posición correcta del carrito flotante
     restaurarPosicionCarrito() {
         const carritoFlotante = document.getElementById('carrito-flotante');
         if (carritoFlotante) {
@@ -104,7 +99,6 @@ class CarritoUI {
         }
     }
 
-    // Proteger los botones del menú de interferencias
     protegerBotonesMenu() {
         // Asegurar que TODOS los botones de menú mantengan su estado original
         const botonesMenu = document.querySelectorAll('.btn-comprar, .btn-agregar-carrito-menu');
@@ -135,7 +129,6 @@ class CarritoUI {
         }
     }
 
-    // Forzar contadores a cero
     forzarContadorACero() {
         // Resetear por ID
         this.contadoresIds.forEach(id => {
@@ -152,7 +145,6 @@ class CarritoUI {
         });
     }
 
-    // Resetear un contador individual
     resetearContador(elemento) {
         // LIMPIAR completamente el contenido
         elemento.textContent = '0';
@@ -176,7 +168,6 @@ class CarritoUI {
         elemento.offsetHeight;
     }
 
-    // Actualizar contenido del carrito modal
     actualizarContenidoCarrito(items, obtenerTotal, crearElementoCarrito) {
         const contenidoCarrito = document.getElementById('carrito-contenido');
         const totalCarrito = document.getElementById('carrito-total');
@@ -212,10 +203,8 @@ class CarritoUI {
                 if (itemElement) {
                     contenidoCarrito.appendChild(itemElement);
                 } else {
-                    console.error(`❌ Error: itemElement es null para ${item.nombre}`);
                 }
             } catch (error) {
-                console.error(`❌ Error creando elemento para ${item.nombre}:`, error);
             }
         });
         
@@ -223,7 +212,6 @@ class CarritoUI {
         const elementosCreados = contenidoCarrito.children.length;
         
         if (elementosCreados !== items.length) {
-            console.error('🚨 DESINCRONIZACIÓN DETECTADA: Elementos en DOM ≠ Items en array');
         }
 
         if (totalCarrito) {
@@ -238,7 +226,6 @@ class CarritoUI {
         }
     }
 
-    // Actualizar apariencia del botón del carrito
     actualizarAparienciaBotonCarrito(cantidadTotal) {
         // Buscar todos los botones de carrito
         const botonesCarrito = [
@@ -267,7 +254,6 @@ class CarritoUI {
         });
     }
 
-    // Verificar si debe ocultar el carrito en ciertas páginas
     debeOcultarCarrito() {
         const paginasExcluidas = [
             'contacto.html',
@@ -282,7 +268,6 @@ class CarritoUI {
         );
     }
 
-    // Alternar visibilidad del carrito modal
     alternarCarrito(items, sincronizarConLocalStorage, actualizarContenidoCarrito, actualizarBotonFinalizarCompra, forzarRecreacionInmediata, verificarContenidoDespuesDeAbrir) {
         const carritoModal = document.getElementById('carrito-modal');
         if (carritoModal) {
@@ -326,5 +311,4 @@ class CarritoUI {
     }
 }
 
-// Exportar para usar en otros módulos
 window.CarritoUI = CarritoUI;

@@ -1,10 +1,8 @@
-// Módulo para manejo del almacenamiento del carrito
 class CarritoStorage {
     constructor() {
         this.storageKey = 'carritoQueburger';
     }
 
-    // Cargar carrito de forma segura
     cargarCarritoSeguro() {
         const carritoGuardado = localStorage.getItem(this.storageKey);
         
@@ -23,24 +21,20 @@ class CarritoStorage {
             return datos;
             
         } catch (error) {
-            console.error('Error al cargar carrito:', error);
             localStorage.setItem(this.storageKey, JSON.stringify([]));
             return [];
         }
     }
 
-    // Guardar carrito
     guardarCarrito(items) {
         try {
             localStorage.setItem(this.storageKey, JSON.stringify(items));
             return true;
         } catch (error) {
-            console.error('Error al guardar carrito:', error);
             return false;
         }
     }
 
-    // Sincronizar datos del carrito
     sincronizarConLocalStorage() {
         const carritoGuardado = localStorage.getItem(this.storageKey);
         if (carritoGuardado) {
@@ -53,7 +47,6 @@ class CarritoStorage {
                     return [];
                 }
             } catch (error) {
-                console.error('❌ Error al parsear localStorage:', error);
                 this.limpiarStorage();
                 return [];
             }
@@ -63,14 +56,12 @@ class CarritoStorage {
         }
     }
 
-    // Limpiar almacenamiento básico
     limpiarStorage() {
         localStorage.removeItem(this.storageKey);
         localStorage.setItem(this.storageKey, JSON.stringify([]));
         localStorage.removeItem('carritoLimpiadoTimestamp');
     }
 
-    // Limpieza completa del almacenamiento
     limpiarStorageCompleto() {
         const clavesParaBorrar = [];
         
@@ -107,7 +98,6 @@ class CarritoStorage {
         });
     }
 
-    // Disparar eventos de storage
     dispararEventoStorage() {
         window.dispatchEvent(new StorageEvent('storage', {
             key: this.storageKey,
@@ -117,5 +107,4 @@ class CarritoStorage {
     }
 }
 
-// Exportar para usar en otros módulos
 window.CarritoStorage = CarritoStorage;

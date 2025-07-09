@@ -1,4 +1,3 @@
-// Carrito de Compras Modularizado - Módulo Principal
 class CarritoCompras {
     constructor() {
         // Inicializar módulos
@@ -252,7 +251,6 @@ class CarritoCompras {
         }
     }
 
-    // ========== MODAL DEL CARRITO ==========
     
     alternarCarrito() {
         const carritoModal = document.getElementById('carrito-modal');

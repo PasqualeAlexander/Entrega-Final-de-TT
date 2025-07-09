@@ -81,7 +81,6 @@ function mostrarEfectoExito(boton, nombreProducto = '') {
     navigator.vibrate([50, 30, 50]);
   }
   
-  // La notificación se maneja automáticamente en carrito.js
   
   setTimeout(() => {
     boton.style.transform = 'scale(1)';

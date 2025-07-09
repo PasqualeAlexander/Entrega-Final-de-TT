@@ -9,7 +9,6 @@ class AnimacionesManager {
         this.configurarEfectosHover();
         this.configurarAnimacionBotonArriba();
         this.configurarAnimacionesCarga();
-        // this.configurarParticulas(); // Animaciones de partículas desactivadas
         this.configurarAnimacionesProductos();
     }
 
@@ -150,12 +149,10 @@ class AnimacionesManager {
     }
 
     configurarParticulas() {
-        // Método desactivado - animaciones de partículas removidas
         return;
     }
 
     crearParticula(contenedor) {
-        // Método desactivado - animaciones de partículas removidas
         return;
     }
 

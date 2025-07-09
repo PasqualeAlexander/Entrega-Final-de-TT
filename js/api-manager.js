@@ -1,4 +1,3 @@
-// ========================= API MANAGER PARA DUMMYJSON =========================
 
 class MenuAPIManager {
   constructor() {

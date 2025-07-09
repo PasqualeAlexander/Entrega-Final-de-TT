@@ -1,10 +1,8 @@
-// Módulo para manejo de notificaciones del carrito
 class CarritoNotificaciones {
     constructor() {
         this.notificacionesActivas = new Set();
     }
 
-    // Mostrar notificación mejorada
     mostrar(mensaje, tipo = 'success') {
         // Evitar notificaciones duplicadas
         if (this.notificacionesActivas.has(mensaje)) {
@@ -72,7 +70,6 @@ class CarritoNotificaciones {
         }, 3000);
     }
 
-    // Eliminar notificación
     eliminar(notificacion, mensaje) {
         if (notificacion && notificacion.parentNode) {
             notificacion.classList.add('saliendo');
@@ -87,7 +84,6 @@ class CarritoNotificaciones {
         }
     }
 
-    // Limpiar todas las notificaciones
     limpiarTodas() {
         const notificaciones = document.querySelectorAll('.notificacion-carrito-mejorada');
         notificaciones.forEach(notificacion => {
@@ -98,7 +94,6 @@ class CarritoNotificaciones {
         this.notificacionesActivas.clear();
     }
 
-    // Métodos de conveniencia
     exito(mensaje) {
         this.mostrar(mensaje, 'success');
     }
@@ -116,5 +111,4 @@ class CarritoNotificaciones {
     }
 }
 
-// Exportar para usar en otros módulos
 window.CarritoNotificaciones = CarritoNotificaciones;

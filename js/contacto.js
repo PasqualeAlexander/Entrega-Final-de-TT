@@ -1,4 +1,3 @@
-// ========================= FUNCIONALIDAD PÁGINA DE CONTACTO =========================
 
 // Función para inicializar la página de contacto
 function inicializarContacto() {

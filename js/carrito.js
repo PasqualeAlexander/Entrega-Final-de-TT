@@ -72,10 +72,9 @@ class CarritoCompras {
         this.actualizarUI();
         
         setTimeout(() => {
-            this.forzarActualizacionCompleta();
             const contenidoCarrito = document.getElementById('carrito-contenido');
             if (contenidoCarrito && this.items.length > 0) {
-                if (contenidoCarrito.children.length === 0 && this.items.length > 0) {
+                if (contenidoCarrito.children.length === 0) {
                     this.actualizarContenidoCarrito();
                 }
             }
@@ -85,14 +84,12 @@ class CarritoCompras {
         return true;
     }
 
-    // Eliminar producto del carrito
     eliminarProducto(productoId) {
         this.items = this.items.filter(item => item.id !== productoId);
         this.guardarCarrito();
         this.actualizarUI();
     }
 
-    // Cambiar cantidad de un producto
     cambiarCantidad(productoId, nuevaCantidad) {
         const item = this.items.find(item => item.id === productoId);
         if (item) {
@@ -106,7 +103,6 @@ class CarritoCompras {
         }
     }
 
-    // Limpiar carrito
     limpiarCarrito() {
         this.items = [];
         localStorage.removeItem('carritoQueburger');
@@ -147,7 +143,6 @@ class CarritoCompras {
         this.mostrarNotificacion('Carrito limpiado correctamente');
     }
     
-    // Limpieza completa y radical del carrito (resuelve problemas de sincronización)
     limpiezaCompleta() {
         this.limpiarLocalStorageCompleto();
         this.items = [];
@@ -166,7 +161,6 @@ class CarritoCompras {
         }));
     }
     
-    // Función de emergencia para limpiar COMPLETAMENTE el localStorage
     limpiarLocalStorageCompleto() {
         const clavesParaBorrar = [];
         
@@ -203,16 +197,13 @@ class CarritoCompras {
         });
     }
 
-    // Obtener total del carrito
     obtenerTotal() {
         return this.items.reduce((total, item) => total + (item.precio * item.cantidad), 0);
     }
 
-    // Obtener cantidad total de items
     obtenerCantidadTotal() {
         return this.items.reduce((total, item) => total + item.cantidad, 0);
     }
-    // Mostrar notificación mejorada
     mostrarNotificacion(mensaje) {
         // Crear elemento de notificación
         const notificacion = document.createElement('div');
@@ -241,7 +232,6 @@ class CarritoCompras {
         }, 3000);
     }
 
-    // Actualizar UI del carrito
     actualizarUI() {
         this.actualizarContador();
         this.actualizarContenidoCarrito();
@@ -533,20 +523,14 @@ class CarritoCompras {
                 const itemElement = this.crearElementoCarrito(item);
                 if (itemElement) {
                     contenidoCarrito.appendChild(itemElement);
-                } else {
-                    console.error(`❌ Error: itemElement es null para ${item.nombre}`);
                 }
             } catch (error) {
-                console.error(`❌ Error creando elemento para ${item.nombre}:`, error);
             }
         });
         
         // VERIFICACIÓN FINAL del DOM
         const elementosCreados = contenidoCarrito.children.length;
         
-        if (elementosCreados !== this.items.length) {
-            console.error('🚨 DESINCRONIZACIÓN DETECTADA: Elementos en DOM ≠ Items en array');
-        }
 
         if (totalCarrito) {
             totalCarrito.textContent = `$${this.obtenerTotal()}`;
@@ -651,11 +635,8 @@ class CarritoCompras {
         }
     }
 
-    // Inicializar carrito
     inicializar() {
-        // No mostrar carrito en páginas donde no es necesario
         if (this.debeOcultarCarrito()) {
-            console.log('Carrito oculto en esta página');
             return;
         }
         
@@ -901,7 +882,6 @@ class CarritoCompras {
         }
         });
         
-        console.log('✅ Apariencia del botón del carrito actualizada con contador:', cantidadTotal);
     }
     
     // Método para sincronizar con localStorage en caso de desajuste
@@ -917,7 +897,6 @@ class CarritoCompras {
                     localStorage.setItem('carritoQueburger', JSON.stringify([]));
                 }
             } catch (error) {
-                console.error('❌ Error al parsear localStorage:', error);
                 this.items = [];
                 localStorage.setItem('carritoQueburger', JSON.stringify([]));
             }

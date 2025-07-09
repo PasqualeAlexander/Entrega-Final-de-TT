@@ -1,0 +1,91 @@
+/* ========================= ESTILOS PARA NOTIFICACIONES DE CONTACTO ========================= */
+
+/* Contenedor de errores */
+.errores-contacto {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4757;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    max-width: 500px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(255, 71, 87, 0.3);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.errores-contacto .error-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.errores-contacto ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.errores-contacto li {
+    margin: 5px 0;
+}
+
+/* Mensaje de éxito */
+.mensaje-exito-contacto {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #4CAF50;
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    z-index: 1000;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(76, 175, 80, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+}
+
+.mensaje-exito-contacto .exito-icon {
+    font-size: 24px;
+}
+
+.mensaje-exito-contacto .exito-texto h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.mensaje-exito-contacto .exito-texto p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Estilos para contador de caracteres */
+.char-counter {
+    color: #666;
+    font-size: 12px;
+    margin-top: 5px;
+    transition: color 0.3s ease;
+}
+
+.char-counter.warning {
+    color: #ff6b35;
+}
+
+.char-counter.error {
+    color: #ff4757;
+}
+
+/* Animaciones de salida */
+.errores-contacto.saliendo,
+.mensaje-exito-contacto.saliendo {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+}

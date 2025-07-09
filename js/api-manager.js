@@ -73,8 +73,8 @@ class MenuAPIManager {
     try {
       console.log('📡 Cargando productos desde DummyJSON API...');
       
-      // Cargar productos (limitamos a 20 para el menú)
-      const response = await fetch(`${this.apiUrl}?limit=20`);
+      // Cargar productos (limitamos a 15 para el menú)
+      const response = await fetch(`${this.apiUrl}?limit=15`);
       
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`);

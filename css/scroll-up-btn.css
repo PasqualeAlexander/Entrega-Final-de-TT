@@ -1,0 +1,113 @@
+/* ========================= ESTILOS PARA BOTÓN SCROLL UP ========================= */
+
+/* Botón principal de scroll up */
+.scroll-up-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6b35, #e55a2e);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* Estados del botón */
+.scroll-up-btn.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.scroll-up-btn:hover {
+    background: linear-gradient(135deg, #e55a2e, #d4511f);
+    transform: translateY(0) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+}
+
+.scroll-up-btn:active {
+    transform: translateY(0) scale(0.95);
+}
+
+/* Imagen dentro del botón */
+.scroll-up-btn img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+/* Fallback para texto en caso de error en la imagen */
+.scroll-up-btn.texto-fallback {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Botón redondo mejorado */
+.scroll-up-btn.redondo {
+    border-radius: 50%;
+}
+
+.scroll-up-btn.redondo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* Animaciones adicionales */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px) scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(0) scale(1.05);
+    }
+    70% {
+        transform: translateY(0) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.scroll-up-btn.animacion-entrada {
+    animation: bounceIn 0.6s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scroll-up-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+    }
+    
+    .scroll-up-btn img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .scroll-up-btn.redondo img {
+        width: 45px;
+        height: 45px;
+    }
+}

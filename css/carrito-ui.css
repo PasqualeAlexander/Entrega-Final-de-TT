@@ -1,0 +1,154 @@
+/* ========================= ESTILOS PARA UI DEL CARRITO ========================= */
+
+/* Estilos para contadores del carrito */
+.carrito-contador,
+.contador-carrito,
+.carrito-contador-menu {
+    display: inline;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.carrito-contador.oculto,
+.contador-carrito.oculto,
+.carrito-contador-menu.oculto {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Protección para botones del menú */
+.btn-comprar,
+.btn-agregar-carrito-menu {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    position: static !important;
+    transform: none !important;
+    z-index: auto !important;
+}
+
+.btn-comprar.protegido-menu,
+.btn-agregar-carrito-menu.protegido-menu {
+    visibility: visible !important;
+    opacity: 1 !important;
+    display: inline-flex !important;
+    position: static !important;
+    transform: none !important;
+}
+
+/* Estilos para botones del carrito */
+.carrito-flotante,
+.carrito-flotante-menu,
+.btn-carrito {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.carrito-flotante button,
+.carrito-flotante-menu button,
+.btn-carrito button {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Carrito flotante principal */
+#carrito-flotante {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+}
+
+/* Estados del carrito */
+.carrito-con-items {
+    animation: pulse 1s ease-in-out;
+}
+
+.carrito-vacio {
+    opacity: 0.8;
+}
+
+/* Animación de pulso para cuando se agrega un item */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Contenido del carrito modal */
+.carrito-vacio {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Asegurar que el contenido del carrito sea visible */
+#carrito-contenido {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Botón finalizar compra */
+.btn-finalizar-compra,
+#finalizar-compra {
+    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.btn-finalizar-compra.oculto,
+#finalizar-compra.oculto {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Forzar visibilidad de elementos críticos */
+.forzar-visible {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.forzar-flex {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #carrito-flotante {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .carrito-flotante,
+    .carrito-flotante-menu {
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* Utilidades para debugging */
+.debug-visible {
+    outline: 2px solid red !important;
+    background: rgba(255, 0, 0, 0.1) !important;
+}
+
+.debug-oculto {
+    outline: 2px solid blue !important;
+    background: rgba(0, 0, 255, 0.1) !important;
+}

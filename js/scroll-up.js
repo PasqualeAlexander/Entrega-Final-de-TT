@@ -7,9 +7,7 @@ function configurarScrollUp() {
     
     if (botonArriba) {
         // Asegurar que el botón esté oculto inicialmente
-        botonArriba.style.opacity = '0';
-        botonArriba.style.transform = 'translateY(20px) scale(0.8)';
-        botonArriba.style.pointerEvents = 'none';
+        botonArriba.className = 'scroll-up-btn';
         botonArriba.classList.remove('visible');
         
         // Evento de scroll para mostrar/ocultar el botón
@@ -17,15 +15,9 @@ function configurarScrollUp() {
             if (window.pageYOffset > 300) {
                 // Mostrar botón
                 botonArriba.classList.add('visible');
-                botonArriba.style.opacity = '1';
-                botonArriba.style.transform = 'translateY(0) scale(1)';
-                botonArriba.style.pointerEvents = 'auto';
             } else {
                 // Ocultar botón
                 botonArriba.classList.remove('visible');
-                botonArriba.style.opacity = '0';
-                botonArriba.style.transform = 'translateY(20px) scale(0.8)';
-                botonArriba.style.pointerEvents = 'none';
             }
         });
         
@@ -61,28 +53,8 @@ function crearBotonScrollUp() {
     
     if (botonScrollUp) {
         // Si existe, asegurarse de que esté oculto inicialmente
-        botonScrollUp.style.cssText = `
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff6b35, #e55a2e);
-            color: white;
-            border: none;
-            cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-            opacity: 0;
-            transform: translateY(20px) scale(0.8);
-            transition: all 0.3s ease;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-        `;
+        botonScrollUp.className = 'scroll-up-btn redondo';
+        botonScrollUp.classList.remove('visible');
         
         // Crear imagen o usar existente
         let imagen = botonScrollUp.querySelector('img');
@@ -95,15 +67,6 @@ function crearBotonScrollUp() {
         // Configurar la imagen
         imagen.src = determinarRutaImagen();
         imagen.alt = 'Ir arriba';
-        imagen.style.cssText = `
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: white;
-            padding: 5px;
-            box-sizing: border-box;
-            transition: transform 0.3s ease;
-        `;
         
         botonScrollUp.title = 'Ir arriba';
         
@@ -119,40 +82,13 @@ function crearBotonScrollUp() {
     botonScrollUp.title = 'Ir arriba';
     
     // Aplicar estilos del botón PRIMERO
-    botonScrollUp.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #ff6b35, #e55a2e);
-        color: white;
-        border: none;
-        cursor: pointer;
-        z-index: 1000;
-        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-        opacity: 0;
-        transform: translateY(20px) scale(0.8);
-        transition: all 0.3s ease;
-        pointer-events: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-    `;
+    botonScrollUp.className = 'scroll-up-btn';
     
     // Crear y configurar la imagen DESPUÉS
     const imagen = document.createElement('img');
     const rutaImagen = determinarRutaImagen();
     imagen.src = rutaImagen;
     imagen.alt = 'Ir arriba';
-    imagen.style.cssText = `
-        width: 40px;
-        height: 40px;
-        transition: transform 0.3s ease;
-        pointer-events: none;
-    `;
     
     // Agregar imagen al botón
     botonScrollUp.appendChild(imagen);
@@ -166,8 +102,7 @@ function crearBotonScrollUp() {
         console.error('Error al cargar la imagen:', rutaImagen);
         // Fallback: mostrar texto si no se puede cargar la imagen
         botonScrollUp.innerHTML = '↑';
-        botonScrollUp.style.fontSize = '20px';
-        botonScrollUp.style.fontWeight = 'bold';
+        botonScrollUp.classList.add('texto-fallback');
     };
     
     // Configurar efectos hover
@@ -203,21 +138,8 @@ function determinarRutaImagen() {
 
 // Función para configurar efectos hover
 function configurarEfectosHover(botonScrollUp) {
-    botonScrollUp.addEventListener('mouseenter', () => {
-        if (window.pageYOffset > 300) {
-            botonScrollUp.style.background = 'linear-gradient(135deg, #e55a2e, #d4511f)';
-            botonScrollUp.style.transform = 'translateY(0) scale(1.1)';
-            botonScrollUp.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.4)';
-        }
-    });
-    
-    botonScrollUp.addEventListener('mouseleave', () => {
-        if (window.pageYOffset > 300) {
-            botonScrollUp.style.background = 'linear-gradient(135deg, #ff6b35, #e55a2e)';
-            botonScrollUp.style.transform = 'translateY(0) scale(1)';
-            botonScrollUp.style.boxShadow = '0 4px 15px rgba(255, 107, 53, 0.3)';
-        }
-    });
+    // Los efectos hover se manejan por CSS
+    // Este método se mantiene para compatibilidad
 }
 
 // Función de inicialización

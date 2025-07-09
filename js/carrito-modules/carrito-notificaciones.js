@@ -52,35 +52,18 @@ class CarritoNotificaciones {
 
         const colorConfig = colores[tipo] || colores.success;
         
-        // Estilos inline para la notificación mejorada
-        Object.assign(notificacion.style, {
-            position: 'fixed',
-            top: '120px',
-            right: '20px',
-            background: colorConfig.fondo,
-            color: 'white',
-            padding: '16px 24px',
-            borderRadius: '15px',
-            zIndex: '10000',
-            transform: 'translateX(350px) scale(0.8)',
-            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-            boxShadow: `0 8px 25px ${colorConfig.sombra}, 0 0 0 1px rgba(255, 255, 255, 0.2)`,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            fontWeight: '600',
-            fontSize: '15px',
-            backdropFilter: 'blur(10px)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            maxWidth: '300px',
-            wordWrap: 'break-word'
-        });
+        // Configurar clases CSS según el tipo
+        notificacion.classList.add(tipo);
+        
+        // Aplicar colores específicos por tipo usando CSS variables
+        notificacion.style.setProperty('--bg-color', colorConfig.fondo);
+        notificacion.style.setProperty('--shadow-color', colorConfig.sombra);
 
         document.body.appendChild(notificacion);
 
         // Animación de entrada
         setTimeout(() => {
-            notificacion.style.transform = 'translateX(0) scale(1)';
+            notificacion.classList.add('visible');
         }, 100);
 
         // Eliminar después de 3 segundos
@@ -92,7 +75,7 @@ class CarritoNotificaciones {
     // Eliminar notificación
     eliminar(notificacion, mensaje) {
         if (notificacion && notificacion.parentNode) {
-            notificacion.style.transform = 'translateX(300px) scale(0.8)';
+            notificacion.classList.add('saliendo');
             setTimeout(() => {
                 if (notificacion.parentNode) {
                     notificacion.parentNode.removeChild(notificacion);

@@ -15,17 +15,17 @@ function inicializarContacto() {
             
             contador.textContent = `${longitud}/${maximo} caracteres`;
             
-            if (longitud > maximo * 0.9) {
-                contador.style.color = '#ff6b35';
-            } else {
-                contador.style.color = '#666';
-            }
+        if (longitud > maximo * 0.9) {
+            contador.className = 'char-counter warning';
+        } else {
+            contador.className = 'char-counter';
+        }
             
             // Limitar la longitud
             if (longitud > maximo) {
                 this.value = this.value.substring(0, maximo);
                 contador.textContent = `${maximo}/${maximo} caracteres`;
-                contador.style.color = '#ff4757';
+            contador.className = 'char-counter error';
             }
         });
     }
@@ -74,13 +74,9 @@ function inicializarContacto() {
         // Fallback si no está disponible la función reutilizable
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
-                botonArriba.style.opacity = '1';
-                botonArriba.style.transform = 'translateY(0) scale(1)';
-                botonArriba.style.pointerEvents = 'auto';
+            botonArriba.classList.add('visible');
             } else {
-                botonArriba.style.opacity = '0';
-                botonArriba.style.transform = 'translateY(20px) scale(0.8)';
-                botonArriba.style.pointerEvents = 'none';
+            botonArriba.classList.remove('visible');
             }
         });
     }
@@ -101,30 +97,14 @@ function mostrarErroresContacto(errores) {
         <ul>${errores.map(error => `<li>${error}</li>`).join('')}</ul>
     `;
     
-    // Estilos del contenedor de errores
-    Object.assign(contenedorErrores.style, {
-        position: 'fixed',
-        top: '100px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        background: '#ff4757',
-        color: 'white',
-        padding: '20px',
-        borderRadius: '10px',
-        zIndex: '1000',
-        maxWidth: '500px',
-        textAlign: 'left',
-        boxShadow: '0 4px 20px rgba(255, 71, 87, 0.3)',
-        fontSize: '14px'
-    });
+    // Los estilos se manejan por CSS externo
     
     document.body.appendChild(contenedorErrores);
     
     // Eliminar después de 5 segundos
     setTimeout(() => {
         if (contenedorErrores.parentNode) {
-            contenedorErrores.style.opacity = '0';
-            contenedorErrores.style.transform = 'translateX(-50%) translateY(-20px)';
+            contenedorErrores.classList.add('saliendo');
             setTimeout(() => {
                 contenedorErrores.parentNode.removeChild(contenedorErrores);
             }, 300);
@@ -144,30 +124,13 @@ function mostrarMensajeExito() {
         </div>
     `;
     
-    Object.assign(mensaje.style, {
-        position: 'fixed',
-        top: '100px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        background: '#4CAF50',
-        color: 'white',
-        padding: '25px',
-        borderRadius: '15px',
-        zIndex: '1000',
-        maxWidth: '400px',
-        textAlign: 'center',
-        boxShadow: '0 4px 20px rgba(76, 175, 80, 0.3)',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '15px'
-    });
+    // Los estilos se manejan por CSS externo
     
     document.body.appendChild(mensaje);
     
     setTimeout(() => {
         if (mensaje.parentNode) {
-            mensaje.style.opacity = '0';
-            mensaje.style.transform = 'translateX(-50%) translateY(-20px)';
+            mensaje.classList.add('saliendo');
             setTimeout(() => {
                 mensaje.parentNode.removeChild(mensaje);
             }, 300);

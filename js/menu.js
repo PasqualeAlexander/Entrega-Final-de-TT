@@ -270,21 +270,62 @@ document.addEventListener('DOMContentLoaded', function() {
   // Configurar opciones de hamburguesas
   configurarOpcionesHamburguesas();
   
-  // Configurar botones
+  // Configurar botones existentes
   const botones = document.querySelectorAll('.btn-agregar-carrito-menu');
   
   botones.forEach((boton, index) => {
-    boton.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      const productoId = this.getAttribute('data-producto');
-      
-      if (productoId) {
-        agregarAlCarrito(this, productoId);
+    // Solo agregar listener si no es un botón de API (que ya tiene su propio listener)
+    if (!boton.classList.contains('btn-api')) {
+      boton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const productoId = this.getAttribute('data-producto');
+        
+        if (productoId) {
+          agregarAlCarrito(this, productoId);
+        }
+      });
+    }
+  });
+  
+  // Configurar observer para botones de API que se agreguen dinámicamente
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) { // Es un elemento
+            const nuevosBotonesTotales = node.querySelectorAll('.btn-agregar-carrito-menu');
+            nuevosBotonesTotales.forEach(boton => {
+              // Solo agregar listener si no es un botón de API
+              if (!boton.classList.contains('btn-api') && !boton.hasAttribute('data-listener-agregado')) {
+                boton.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  
+                  const productoId = this.getAttribute('data-producto');
+                  
+                  if (productoId) {
+                    agregarAlCarrito(this, productoId);
+                  }
+                });
+                boton.setAttribute('data-listener-agregado', 'true');
+              }
+            });
+          }
+        });
       }
     });
   });
+  
+  // Observar cambios en el contenedor del menú
+  const menuGrid = document.querySelector('.menu-grid');
+  if (menuGrid) {
+    observer.observe(menuGrid, {
+      childList: true,
+      subtree: true
+    });
+  }
   
   // Animaciones
   const observer = new IntersectionObserver((entries) => {

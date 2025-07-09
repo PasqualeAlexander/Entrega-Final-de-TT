@@ -891,14 +891,14 @@ class CarritoCompras {
             // Forzar que el color del texto sea blanco
             boton.style.color = 'white';
             
-            // Actualizar estilo basado en contenido
-            if (cantidadTotal > 0) {
-                boton.classList.add('carrito-con-items');
-                boton.classList.remove('carrito-vacio');
-            } else {
-                boton.classList.add('carrito-vacio');
-                boton.classList.remove('carrito-con-items');
-            }
+        // Mantener estilo constante sin cambios de clases
+        if (cantidadTotal > 0) {
+            // No agregar clases que cambien la apariencia
+            boton.classList.remove('carrito-vacio');
+        } else {
+            // No agregar clases que cambien la apariencia
+            boton.classList.remove('carrito-con-items');
+        }
         });
         
         console.log('✅ Apariencia del botón del carrito actualizada con contador:', cantidadTotal);

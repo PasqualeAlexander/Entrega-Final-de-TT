@@ -1,0 +1,86 @@
+<!-- Loading and Error Templates -->
+<template id="loading-template">
+  <div class="loading-api">
+    <div class="spinner-api"></div>
+    <h3>Cargando productos desde API...</h3>
+    <p>DummyJSON - Productos dinámicos</p>
+  </div>
+</template>
+
+<template id="error-template">
+  <div class="error-api">
+    <h3>❌ Error al cargar productos</h3>
+    <p>No se pudieron cargar los productos desde la API de DummyJSON.</p>
+    <button onclick="location.reload()">🔄 Reintentar</button>
+  </div>
+</template>
+
+<!-- Product Card Template -->
+<template id="product-card-template">
+  <div class="menu-item" data-type="producto-api">
+    <div class="item-image-container">
+      <img class="item-image" loading="lazy">
+      <div class="image-overlay">
+        <span class="precio-destacado"></span>
+        <span class="etiqueta-especial">📦 API</span>
+      </div>
+    </div>
+    <div class="item-content">
+      <h3 class="item-title"></h3>
+      <p class="item-description"></p>
+      <div class="item-rating" style="margin: 10px 0;">
+        <span class="rating-stars" style="color: #ffd700; font-size: 16px;"></span>
+        <span class="rating-score" style="color: #999; margin-left: 5px;"></span>
+      </div>
+      <div class="item-details">
+        <span class="precio"></span>
+        <span class="categoria-badge"></span>
+      </div>
+      <div class="item-actions">
+        <div class="stock-info"></div>
+        <div class="additional-info" style="margin: 8px 0; font-size: 12px; color: #666;"></div>
+        <button class="btn-agregar-carrito-menu btn-api">➕ Agregar al Carrito</button>
+        <button class="btn-ver-detalles">👁️ Ver Detalles</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- Modal Template -->
+<template id="modal-template">
+  <div class="modal-api-overlay" onclick="if(event.target.className==='modal-api-overlay') this.remove();">
+    <div class="modal-api-content">
+      <button class="modal-close" onclick="this.closest('.modal-api-overlay').remove()">×</button>
+      <div class="modal-header">
+        <h2>{title}</h2>
+        <div class="rating-container">
+          <span class="rating-stars">{estrellas}</span>
+          <span class="rating-score">({rating})</span>
+          <span class="api-badge">🌐 API</span>
+        </div>
+      </div>
+      <div class="modal-gallery">
+        <img src="{thumbnail}" alt="{title}">
+      </div>
+      <div class="modal-price">
+        <span class="price-main">${precioARS}</span>
+        <span class="discount-badge" style="{discountStyle}">{discountText}</span>
+      </div>
+      <div class="modal-description">
+        <p>{descripcion}</p>
+      </div>
+      <div class="modal-details">
+        <div class="modal-details-grid">
+          <div><strong>Tipo:</strong> {categoria}</div>
+          <div><strong>Marca:</strong> {brand}</div>
+          <div><strong>Stock:</strong> {stock} unidades</div>
+          <div><strong>ID:</strong> #{id}</div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-btn-primary" onclick="menuAPI.agregarAlCarrito({id}); this.closest('.modal-api-overlay').remove();">🛒 Agregar al Carrito</button>
+        <button class="modal-btn-secondary" onclick="this.closest('.modal-api-overlay').remove()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</template>

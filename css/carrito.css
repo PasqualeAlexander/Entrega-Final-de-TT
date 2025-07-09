@@ -417,11 +417,17 @@
 
 /* ========== ESTADOS DEL CARRITO ========== */
 .carrito-con-items {
-    animation: pulse-glow 2s infinite;
+    /* Mantener apariencia constante sin animaciones */
+    animation: none;
+    transform: none;
+    border-radius: inherit;
 }
 
 .carrito-vacio {
-    opacity: 0.8;
+    /* Mantener apariencia constante sin cambios de opacidad */
+    opacity: 1;
+    transform: none;
+    border-radius: inherit;
 }
 
 /* ========== ANIMACIONES ========== */

@@ -17,13 +17,14 @@
   <link rel="stylesheet" href="../css/scroll-up-btn.css" />
   <link rel="stylesheet" href="../css/carrito-notificaciones.css" />
   <link rel="stylesheet" href="../css/carrito-ui.css" />
+  <link rel="stylesheet" href="../css/api-manager.css" />
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <!-- Módulos JavaScript -->
   <script src="../js/scroll-up.js" defer></script>
-  <script src="../js/api-manager.js" defer></script>
   <script src="../js/carrito.js" defer></script>
   <script src="../js/main.js" defer></script>
+  <script src="../js/api-manager.js" defer></script>
   <script src="../js/menu.js" defer></script>
 </head>
 
@@ -122,7 +123,7 @@
   <!-- Botón flotante para ver carrito -->
   <button onclick="carrito.alternarCarrito()" class="carrito-flotante-menu" id="carrito-flotante">
   🛒 Carrito 
-    <span class="carrito-contador-menu" id="carrito-contador-menu" style="display: none;"></span>
+    <span class="carrito-contador-menu" id="carrito-contador-menu"></span>
   </button>
 
   <!-- Botón de scroll up -->
@@ -130,6 +131,92 @@
     <a href="#ir-arriba">
       <img src="../imagenesTT/scrollup2.png" alt="Ir arriba">
     </a>
+  </div>
+
+  <!-- Templates para API Manager -->
+  <div id="api-templates">
+    <!-- Loading Template -->
+    <template id="loading-template">
+      <div class="loading-api">
+        <div class="spinner-api"></div>
+        <h3>Cargando productos desde API...</h3>
+        <p>DummyJSON - Productos dinámicos</p>
+      </div>
+    </template>
+
+    <!-- Error Template -->
+    <template id="error-template">
+      <div class="error-api">
+        <h3>❌ Error al cargar productos</h3>
+        <p>No se pudieron cargar los productos desde la API de DummyJSON.</p>
+        <button onclick="location.reload()">🔄 Reintentar</button>
+      </div>
+    </template>
+
+    <!-- Product Card Template -->
+    <template id="product-card-template">
+      <div class="menu-item" data-type="producto-api">
+        <div class="item-image-container">
+          <img class="item-image" loading="lazy">
+          <div class="image-overlay">
+            <span class="precio-destacado"></span>
+            <span class="etiqueta-especial">📦 API</span>
+          </div>
+        </div>
+        <div class="item-content">
+          <h3 class="item-title"><span class="badge-api">🌐</span></h3>
+          <p class="item-description"></p>
+          <div class="item-rating">
+            <span class="rating-stars"></span>
+            <span class="rating-score"></span>
+          </div>
+          <div class="item-details">
+            <span class="precio"></span>
+            <span class="categoria-badge">API</span>
+          </div>
+          <div class="item-actions">
+            <div class="stock-info"></div>
+            <div class="additional-info" style="margin: 8px 0; font-size: 12px; color: #666;"></div>
+            <button class="btn-agregar-carrito-menu btn-api">➕ Agregar al Carrito</button>
+            <button class="btn-ver-detalles">👁️ Ver Detalles</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Modal Template -->
+    <template id="modal-template">
+      <div class="modal-api-overlay" onclick="if(event.target.className==='modal-api-overlay') this.remove();">
+        <div class="modal-api-content">
+          <button class="modal-close" onclick="this.closest('.modal-api-overlay').remove()">×</button>
+          <div class="modal-header">
+            <h2></h2>
+            <div class="rating-container">
+              <span class="rating-stars"></span>
+              <span class="rating-score"></span>
+              <span class="api-badge">🌐 API</span>
+            </div>
+          </div>
+          <div class="modal-gallery">
+            <img>
+          </div>
+          <div class="modal-price">
+            <span class="price-main"></span>
+            <span class="discount-badge"></span>
+          </div>
+          <div class="modal-description">
+            <p></p>
+          </div>
+          <div class="modal-details">
+            <div class="modal-details-grid"></div>
+          </div>
+          <div class="modal-actions">
+            <button class="modal-btn-primary">🛒 Agregar al Carrito</button>
+            <button class="modal-btn-secondary" onclick="this.closest('.modal-api-overlay').remove()">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </template>
   </div>
 
 </body>

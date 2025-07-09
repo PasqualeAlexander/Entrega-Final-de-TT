@@ -987,22 +987,31 @@ body #scroll-button.boton-arriba {
   box-shadow: 0 6px 25px rgba(255, 107, 53, 0.6);
 }
 
-/* Estados del carrito */
+/* Estados del carrito - MANTENER APARIENCIA CONSTANTE */
 .carrito-flotante-menu.carrito-vacio {
   background: linear-gradient(45deg, #ff6b35, #f7931e);
   color: white !important;
+  border-radius: 50px !important;
+  transform: none !important;
+  animation: none !important;
 }
 
 .carrito-flotante-menu.carrito-con-items {
-  background: linear-gradient(45deg, #28a745, #20c997);
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
   color: white !important;
+  border-radius: 50px !important;
+  transform: none !important;
+  animation: none !important;
 }
 
-/* Asegurar que el texto siempre sea blanco */
+/* Asegurar que el texto siempre sea blanco y la forma sea constante */
 .carrito-flotante-menu,
 .carrito-flotante-menu.carrito-vacio,
 .carrito-flotante-menu.carrito-con-items {
   color: white !important;
+  border-radius: 50px !important;
+  transform: none !important;
+  animation: none !important;
 }
 
 .carrito-contador-menu {

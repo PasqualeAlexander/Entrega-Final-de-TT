@@ -212,212 +212,34 @@ class AnimacionesManager {
 }
 
 function agregarEstilosAnimaciones() {
-    const estilos = document.createElement('style');
-    estilos.textContent = `
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    // Verificar si ya existe el archivo CSS
+    const linkExistente = document.querySelector('link[href*="animaciones.css"]');
+    if (linkExistente) {
+        return;
+    }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInFromLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Animación de partículas removida - flotar desactivado */
-
-        @keyframes pulso {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes onda {
-            from {
-                width: 0;
-                height: 0;
-                opacity: 1;
-            }
-            to {
-                width: 200px;
-                height: 200px;
-                margin: -100px;
-                opacity: 0;
-            }
-        }
-
-        @keyframes rebote {
-            0%, 20%, 60%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            80% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes girar {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .imagen-port {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-origin: center;
-        }
-
-        .servicio-ind {
-            transition: all 0.3s ease;
-        }
-
-        .hover-galery {
-            transition: all 0.3s ease;
-            transform: scale(0.8);
-        }
-
-        #scroll-button {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            opacity: 0;
-            transform: translateY(20px) scale(0.8);
-            pointer-events: none;
-        }
-
-        .btn-agregar-carrito {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-agregar-carrito:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-        }
-
-        .btn-agregar-carrito:active {
-            transform: translateY(0);
-        }
-
-        .imagen-about-us, .imagen-port img {
-            transition: all 0.3s ease;
-        }
-
-        .imagen-about-us:hover, .imagen-port img:hover {
-            transform: scale(1.05);
-            filter: brightness(1.1);
-        }
-
-        .text-header h1 {
-            background: linear-gradient(45deg, #ff6b35, #f7931e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: brillo 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes brillo {
-            from {
-                filter: brightness(1);
-            }
-            to {
-                filter: brightness(1.2);
-            }
-        }
-
-        .nav a {
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: visible;
-            display: inline-block;
-            padding-bottom: 5px;
-        }
-
-        .nav a::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ff6b35;
-            transition: width 0.3s ease;
-        }
-
-        .nav a:hover::before {
-            width: 100%;
-        }
-
-        .nav a:hover {
-            transform: translateY(-2px);
-        }
-
-        #carrito-widget {
-            animation: slideInFromRight 0.5s ease;
-        }
-
-        @keyframes slideInFromRight {
-            from {
-                transform: translateX(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .imagen-port:hover {
-                transform: none;
-            }
-            
-            /* Regla de partículas removida - ya no es necesaria */
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms;
-                animation-iteration-count: 1;
-                transition-duration: 0.01ms;
-            }
-        }
-    `;
+    // Crear enlace al archivo CSS externo
+    const linkCSS = document.createElement('link');
+    linkCSS.rel = 'stylesheet';
+    linkCSS.type = 'text/css';
+    linkCSS.href = obtenerRutaAnimacionesCSS();
+    linkCSS.id = 'animaciones-css-link';
     
-    document.head.appendChild(estilos);
+    // Agregar al head
+    document.head.appendChild(linkCSS);
+}
+
+// Obtener la ruta correcta del archivo CSS según la ubicación actual
+function obtenerRutaAnimacionesCSS() {
+    const rutaActual = window.location.pathname;
+    
+    // Si estamos en una página dentro de la carpeta "pages"
+    if (rutaActual.includes('/pages/')) {
+        return '../css/animaciones.css';
+    }
+    
+    // Si estamos en la raíz del proyecto
+    return 'css/animaciones.css';
 }
 
 function animarAgregarCarrito(elemento) {

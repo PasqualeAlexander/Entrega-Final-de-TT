@@ -132,7 +132,7 @@
 
 .btn-agregar-carrito:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 4px 12px rgba(102, 102, 102, 0.4);
 }
 
 .btn-agregar-carrito:active {
@@ -150,7 +150,7 @@
 
 /* ========== ESTILOS DE TEXTO CON ANIMACIÓN ========== */
 .text-header h1 {
-    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    background: linear-gradient(45deg, #666666, #999999);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

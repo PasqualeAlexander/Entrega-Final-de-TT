@@ -1380,8 +1380,8 @@ header .text-header {
 	}
 
 	/* Título hero responsivo */
-	.hero-title {
-		font-size: 45px !important;
+	.hero-content .hero-title {
+		font-size: 45px;
 		line-height: 1.1;
 		margin: 10px auto;
 	}
@@ -1543,8 +1543,8 @@ header .text-header {
 	}
 
 	/* Título hero en móviles pequeños */
-	.hero-title {
-		font-size: 35px !important;
+	.hero-content .hero-title {
+		font-size: 35px;
 	}
 
 	.hero-content {

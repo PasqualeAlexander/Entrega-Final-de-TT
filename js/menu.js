@@ -1,11 +1,9 @@
 
-// Función para esperar que el carrito principal esté disponible
 function esperarCarritoPrincipal() {
   return new Promise((resolve) => {
     if (window.carrito && typeof window.carrito.agregarProducto === 'function') {
       resolve(window.carrito);
     } else {
-      // Esperar hasta que el carrito esté disponible
       const intervalo = setInterval(() => {
         if (window.carrito && typeof window.carrito.agregarProducto === 'function') {
           clearInterval(intervalo);
@@ -13,7 +11,6 @@ function esperarCarritoPrincipal() {
         }
       }, 100);
       
-      // Timeout después de 5 segundos
       setTimeout(() => {
         clearInterval(intervalo);
         resolve(null);
@@ -22,27 +19,22 @@ function esperarCarritoPrincipal() {
   });
 }
 
-// Función principal para agregar al carrito (MEJORADO)
 async function agregarAlCarrito(boton, productoId) {
   
-  // Verificar que el productoId existe
   if (!productoId) {
     mostrarEfectoError(boton, 'ID de producto no válido');
     return;
   }
   
   try {
-    // Esperar a que el carrito principal esté disponible
     const carrito = await esperarCarritoPrincipal();
     
     if (carrito) {
-      // Obtener datos del botón para crear el producto
       const title = boton.getAttribute('data-title');
       const price = boton.getAttribute('data-price');
       const image = boton.getAttribute('data-image');
       const description = boton.getAttribute('data-description');
       
-      // Crear datos del producto desde los atributos del botón
       const datosProducto = {
         nombre: title,
         precio: parseInt(price),
@@ -50,7 +42,6 @@ async function agregarAlCarrito(boton, productoId) {
         descripcion: description
       };
       
-      // Intentar agregar el producto usando datos directos
       const exito = carrito.agregarProducto(productoId, 1, datosProducto);
       
       if (exito) {
@@ -76,7 +67,6 @@ function mostrarEfectoExito(boton, nombreProducto = '') {
   boton.textContent = '✓ ¡Agregado!';
   boton.disabled = true;
   
-  // Vibración de éxito
   if ('vibrate' in navigator) {
     navigator.vibrate([50, 30, 50]);
   }
@@ -100,12 +90,10 @@ function mostrarEfectoError(boton, mensaje = 'Error') {
   boton.textContent = `❌ ${mensaje}`;
   boton.disabled = true;
   
-  // Vibración de error
   if ('vibrate' in navigator) {
     navigator.vibrate([100, 50, 100]);
   }
   
-  // Notificación de error
   mostrarNotificacionFlotante(mensaje, 'error');
   
   setTimeout(() => {
@@ -117,7 +105,6 @@ function mostrarEfectoError(boton, mensaje = 'Error') {
   }, 2000);
 }
 
-// Función para mostrar notificaciones flotantes
 function mostrarNotificacionFlotante(mensaje, tipo = 'info') {
   const notificacion = document.createElement('div');
   notificacion.className = `notificacion-flotante notificacion-${tipo}`;
@@ -152,12 +139,10 @@ function mostrarNotificacionFlotante(mensaje, tipo = 'info') {
   notificacion.textContent = mensaje;
   document.body.appendChild(notificacion);
   
-  // Animación de entrada
   setTimeout(() => {
     notificacion.style.transform = 'translateX(0)';
   }, 100);
   
-  // Eliminar después de 3 segundos
   setTimeout(() => {
     notificacion.style.transform = 'translateX(350px)';
     setTimeout(() => {
@@ -170,7 +155,6 @@ function mostrarNotificacionFlotante(mensaje, tipo = 'info') {
 
 
 
-// Mejorar experiencia touch en botones
 function configurarExperienciaTactil() {
   const touchButtons = document.querySelectorAll('.btn-agregar-carrito-menu, .mobile-nav-link');
   
@@ -185,7 +169,6 @@ function configurarExperienciaTactil() {
   });
 }
 
-// Scroll suave para enlaces internos
 function configurarScrollSuave() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -201,7 +184,6 @@ function configurarScrollSuave() {
   });
 }
 
-// Feedback táctil avanzado
 function vibrarDispositivo(duracion = 50) {
   if ('vibrate' in navigator) {
     navigator.vibrate(duracion);
@@ -216,7 +198,6 @@ function configurarVibracion() {
   });
 }
 
-// Función para configurar opciones de hamburguesas
 function configurarOpcionesHamburguesas() {
   const opcionesBotones = document.querySelectorAll('.opcion-btn');
   
@@ -227,53 +208,41 @@ function configurarOpcionesHamburguesas() {
       const precioElement = item.querySelector('.precio');
       const botonCarrito = item.querySelector('.btn-agregar-carrito-menu');
       
-      // Remover active de todos los botones del mismo grupo
       contenedor.querySelectorAll('.opcion-btn').forEach(btn => {
         btn.classList.remove('active');
       });
       
-      // Agregar active al botón clickeado
       this.classList.add('active');
       
-      // Obtener datos del botón seleccionado
       const precio = this.getAttribute('data-precio');
       const productoId = this.getAttribute('data-producto');
       const tipo = this.getAttribute('data-tipo');
       
-      // Actualizar precio mostrado
       precioElement.textContent = `$${precio}`;
       
-      // Actualizar precio destacado en overlay
       const precioDestacado = item.querySelector('.precio-destacado');
       if (precioDestacado) {
         precioDestacado.textContent = `$${precio}`;
       }
       
-      // Actualizar datos del botón de carrito
       botonCarrito.setAttribute('data-producto', productoId);
       botonCarrito.setAttribute('data-price', precio);
       
-      // Actualizar descripción con el tipo seleccionado
-      const tituloOriginal = botonCarrito.getAttribute('data-title').split(' (')[0]; // Obtener título base sin tipo previo
+      const tituloOriginal = botonCarrito.getAttribute('data-title').split(' (')[0];
       const descripcionOriginal = botonCarrito.getAttribute('data-description');
       
-      // Modificar título para incluir el tipo
       const nuevoTitulo = `${tituloOriginal} (${tipo.charAt(0).toUpperCase() + tipo.slice(1)})`;
       botonCarrito.setAttribute('data-title', nuevoTitulo);
     });
   });
 }
 
-// Configuración principal
 document.addEventListener('DOMContentLoaded', function() {
-  // Configurar opciones de hamburguesas
   configurarOpcionesHamburguesas();
   
-  // Configurar botones existentes
   const botones = document.querySelectorAll('.btn-agregar-carrito-menu');
   
   botones.forEach((boton, index) => {
-    // Solo agregar listener si no es un botón de API (que ya tiene su propio listener)
     if (!boton.classList.contains('btn-api')) {
       boton.addEventListener('click', function(e) {
         e.preventDefault();
@@ -288,15 +257,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Configurar observer para botones de API que se agreguen dinámicamente
   const observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
       if (mutation.type === 'childList') {
         mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1) { // Es un elemento
+          if (node.nodeType === 1) {
             const nuevosBotonesTotales = node.querySelectorAll('.btn-agregar-carrito-menu');
             nuevosBotonesTotales.forEach(boton => {
-              // Solo agregar listener si no es un botón de API
               if (!boton.classList.contains('btn-api') && !boton.hasAttribute('data-listener-agregado')) {
                 boton.addEventListener('click', function(e) {
                   e.preventDefault();
@@ -317,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Observar cambios en el contenedor del menú
   const menuGrid = document.querySelector('.menu-grid');
   if (menuGrid) {
     observer.observe(menuGrid, {
@@ -326,7 +292,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
-  // Animaciones
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -343,7 +308,6 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(item);
   });
   
-  // Forzar la visibilidad de los elementos que ya están en la vista
   setTimeout(() => {
     document.querySelectorAll('.menu-item').forEach(item => {
       const rect = item.getBoundingClientRect();
@@ -357,16 +321,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 100);
   
   
-  // Configurar experiencia táctil
   configurarExperienciaTactil();
   
-  // Configurar scroll suave
   configurarScrollSuave();
   
-  // Configurar vibración
   configurarVibracion();
   
-  // Configurar scroll up
   if (typeof inicializarScrollUp === 'function') {
     inicializarScrollUp();
   }

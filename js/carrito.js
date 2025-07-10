@@ -1,39 +1,75 @@
 class CarritoCompras {
+    static CONFIG = {
+        STORAGE_KEY: 'carritoQueburger',
+        TIMESTAMP_KEY: 'carritoLimpiadoTimestamp',
+        CONTADOR_IDS: [
+            'carrito-contador',
+            'carrito-contador-menu',
+            'contador-carrito',
+            'carrito-count'
+        ],
+        CONTADOR_CLASES: [
+            '.carrito-contador',
+            '.contador-carrito',
+            '.carrito-contador-menu'
+        ],
+        BOTON_CARRITO_IDS: [
+            'carrito-flotante',
+            'carrito-widget',
+            'carrito-boton',
+            'carrito-boton-principal'
+        ],
+        BOTON_CARRITO_CLASES: [
+            '.carrito-flotante',
+            '.carrito-flotante-menu',
+            '.btn-carrito'
+        ],
+        PAGINAS_EXCLUIDAS: [
+            'contacto.html',
+            'contacto'
+        ],
+        STORAGE_CLAVES_LIMPIAR: [
+            'carrito', 'cart', 'burger', 'shopping'
+        ]
+    };
+
     constructor() {
-        this.items = this.cargarCarritoSeguro();
+        this.items = this.cargarCarrito();
         this.inicializar();
     }
 
     cargarCarrito() {
-        const carritoGuardado = localStorage.getItem('carritoQueburger');
-        return carritoGuardado ? JSON.parse(carritoGuardado) : [];
-    }
-    
-    cargarCarritoSeguro() {
-        const carritoGuardado = localStorage.getItem('carritoQueburger');
+        const carritoGuardado = localStorage.getItem(CarritoCompras.CONFIG.STORAGE_KEY);
         
         if (!carritoGuardado || carritoGuardado === 'null' || carritoGuardado === 'undefined') {
-            return [];
+            return this.resetearStorage();
         }
         
         try {
             const datos = JSON.parse(carritoGuardado);
             
             if (!Array.isArray(datos)) {
-                localStorage.setItem('carritoQueburger', JSON.stringify([]));
-                return [];
+                return this.resetearStorage();
             }
             
             return datos;
             
         } catch (error) {
-            localStorage.setItem('carritoQueburger', JSON.stringify([]));
-            return [];
+            return this.resetearStorage();
         }
     }
 
+    resetearStorage() {
+        const arrayVacio = [];
+        localStorage.setItem(CarritoCompras.CONFIG.STORAGE_KEY, JSON.stringify(arrayVacio));
+        return arrayVacio;
+    }
+
     guardarCarrito() {
-        localStorage.setItem('carritoQueburger', JSON.stringify(this.items));
+        try {
+            localStorage.setItem(CarritoCompras.CONFIG.STORAGE_KEY, JSON.stringify(this.items));
+        } catch (error) {
+        }
     }
 
     agregarProducto(productoId, cantidad = 1, datosDirectos = null) {
@@ -105,96 +141,113 @@ class CarritoCompras {
 
     limpiarCarrito() {
         this.items = [];
-        localStorage.removeItem('carritoQueburger');
-        localStorage.setItem('carritoQueburger', JSON.stringify([]));
-        localStorage.removeItem('carritoLimpiadoTimestamp');
+        this.guardarCarrito();
         
-        this.forzarContadorACero();
+        localStorage.removeItem(CarritoCompras.CONFIG.TIMESTAMP_KEY);
         
-        const contenidoCarrito = document.getElementById('carrito-contenido');
-        const totalCarrito = document.getElementById('carrito-total');
+        this.resetearUICarrito();
         
-        if (contenidoCarrito) {
-            contenidoCarrito.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío</p>';
-        }
+        this.dispatchCarritoEvent('carritoLimpiado', { cantidadTotal: 0, limpiezaCompleta: true });
         
-        if (totalCarrito) {
-            totalCarrito.textContent = '$0';
-        }
-        
-        this.actualizarContenidoCarrito();
-        this.actualizarAparienciaBotonCarrito();
-        
-        window.dispatchEvent(new CustomEvent('carritoLimpiado', {
-            detail: { cantidadTotal: 0, limpiezaCompleta: true }
-        }));
-        
-        setTimeout(() => {
-            if (typeof actualizarContadorCarrito === 'function') {
-                actualizarContadorCarrito();
-            }
-            this.actualizarAparienciaBotonCarrito();
-        }, 100);
-        
-        setTimeout(() => {
-            this.actualizarAparienciaBotonCarrito();
-        }, 500);
+        this.scheduleDelayedUpdate();
         
         this.mostrarNotificacion('Carrito limpiado correctamente');
     }
     
+    resetearUICarrito() {
+        this.forzarContadorACero();
+        
+        const elementos = this.obtenerElementosCarrito();
+        
+        if (elementos.contenido) {
+            elementos.contenido.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío</p>';
+        }
+        
+        if (elementos.total) {
+            elementos.total.textContent = '$0';
+        }
+        
+        this.actualizarContenidoCarrito();
+        this.actualizarAparienciaBotonCarrito();
+    }
+    
+    obtenerElementosCarrito() {
+        return {
+            contenido: document.getElementById('carrito-contenido'),
+            total: document.getElementById('carrito-total'),
+            modal: document.getElementById('carrito-modal'),
+            botonFinalizar: document.querySelector('#carrito-modal .btn-comprar, .btn-finalizar-compra, #finalizar-compra')
+        };
+    }
+    
+    dispatchCarritoEvent(eventName, detail) {
+        window.dispatchEvent(new CustomEvent(eventName, { detail }));
+    }
+    
+    // Método helper para programar actualizaciones con delay
+    scheduleDelayedUpdate() {
+        const delays = [100, 500];
+        delays.forEach(delay => {
+            setTimeout(() => {
+                if (typeof actualizarContadorCarrito === 'function') {
+                    actualizarContadorCarrito();
+                }
+                this.actualizarAparienciaBotonCarrito();
+            }, delay);
+        });
+    }
+    
+    // Método optimizado para limpieza completa usando configuración centralizada
     limpiezaCompleta() {
         this.limpiarLocalStorageCompleto();
         this.items = [];
-        localStorage.setItem('carritoQueburger', JSON.stringify([]));
+        this.guardarCarrito();
         this.resetearContadoresCompletamente();
         this.actualizarUI();
         
-        window.dispatchEvent(new CustomEvent('carritoLimpiado', {
-            detail: { cantidadTotal: 0, limpiezaCompleta: true }
-        }));
+        // Eventos unificados
+        this.dispatchCarritoEvent('carritoLimpiado', { cantidadTotal: 0, limpiezaCompleta: true });
         
         window.dispatchEvent(new StorageEvent('storage', {
-            key: 'carritoQueburger',
+            key: CarritoCompras.CONFIG.STORAGE_KEY,
             newValue: '[]',
             oldValue: null
         }));
     }
     
+    // Método optimizado para limpiar localStorage usando configuración centralizada
     limpiarLocalStorageCompleto() {
+        const clavesParaBorrar = this.obtenerClavesParaBorrar('localStorage');
+        const sessionKeys = this.obtenerClavesParaBorrar('sessionStorage');
+        
+        // Limpiar localStorage
+        clavesParaBorrar.forEach(clave => localStorage.removeItem(clave));
+        
+        // Limpiar sessionStorage
+        sessionKeys.forEach(clave => sessionStorage.removeItem(clave));
+    }
+    
+    // Método helper para obtener claves a borrar de manera centralizada
+    obtenerClavesParaBorrar(tipoStorage) {
+        const storage = tipoStorage === 'localStorage' ? localStorage : sessionStorage;
         const clavesParaBorrar = [];
         
-        for (let i = 0; i < localStorage.length; i++) {
-            const clave = localStorage.key(i);
-            if (clave && (
-                clave.toLowerCase().includes('carrito') ||
-                clave.toLowerCase().includes('cart') ||
-                clave.toLowerCase().includes('burger') ||
-                clave.toLowerCase().includes('shopping') ||
-                clave === 'carritoQueburger'
-            )) {
+        for (let i = 0; i < storage.length; i++) {
+            const clave = storage.key(i);
+            if (clave && this.esClaveRelacionadaCarrito(clave)) {
                 clavesParaBorrar.push(clave);
             }
         }
         
-        clavesParaBorrar.forEach(clave => {
-            localStorage.removeItem(clave);
-        });
-        
-        const sessionKeys = [];
-        for (let i = 0; i < sessionStorage.length; i++) {
-            const clave = sessionStorage.key(i);
-            if (clave && (
-                clave.toLowerCase().includes('carrito') ||
-                clave.toLowerCase().includes('cart')
-            )) {
-                sessionKeys.push(clave);
-            }
-        }
-        
-        sessionKeys.forEach(clave => {
-            sessionStorage.removeItem(clave);
-        });
+        return clavesParaBorrar;
+    }
+    
+    // Método helper para verificar si una clave está relacionada con el carrito
+    esClaveRelacionadaCarrito(clave) {
+        const claveMinuscula = clave.toLowerCase();
+        return CarritoCompras.CONFIG.STORAGE_CLAVES_LIMPIAR.some(palabra => 
+            claveMinuscula.includes(palabra)
+        ) || clave === CarritoCompras.CONFIG.STORAGE_KEY;
     }
 
     obtenerTotal() {
@@ -238,6 +291,13 @@ class CarritoCompras {
         this.actualizarBotonFinalizarCompra();
     }
     
+    // Método helper para manejar visibilidad de elementos
+    setVisibility(element, shouldShow) {
+        element.style.display = shouldShow ? 'flex' : 'none';
+        element.style.visibility = shouldShow ? 'visible' : 'hidden';
+        element.style.opacity = shouldShow ? '1' : '0';
+    }
+    
     // Método para actualizar la visibilidad del botón de finalizar compra
     actualizarBotonFinalizarCompra() {
         this.buscarYActualizarBotonFinalizarCompra();
@@ -267,17 +327,7 @@ class CarritoCompras {
         }
         
         if (botonFinalizar) {
-            const hayProductos = this.items.length > 0;
-            
-            if (hayProductos) {
-                botonFinalizar.style.display = 'flex';
-                botonFinalizar.style.visibility = 'visible';
-                botonFinalizar.style.opacity = '1';
-            } else {
-                botonFinalizar.style.display = 'none';
-                botonFinalizar.style.visibility = 'hidden';
-                botonFinalizar.style.opacity = '0';
-            }
+            this.setVisibility(botonFinalizar, this.items.length > 0);
         } else if (intentos < maxIntentos) {
             setTimeout(() => {
                 this.buscarYActualizarBotonFinalizarCompra(intentos + 1);
@@ -340,105 +390,97 @@ class CarritoCompras {
         }
     }
 
-    // Actualizar contador del carrito (UNIFICADO Y MEJORADO)
+    // Método optimizado para actualizar contador usando configuración centralizada
     actualizarContador() {
         const cantidadTotal = this.obtenerCantidadTotal();
         
-        const contadores = [
-            'carrito-contador',
-            'carrito-contador-menu',
-            'contador-carrito',
-            'carrito-count'
-        ];
-        
-        // Actualizar TODOS los contadores con el mismo valor
-        contadores.forEach(id => {
+        // Actualizar por IDs usando configuración centralizada
+        CarritoCompras.CONFIG.CONTADOR_IDS.forEach(id => {
             const contador = document.getElementById(id);
             if (contador) {
-                // MOSTRAR contador desde 1 en adelante, ocultar cuando es 0
-                if (cantidadTotal > 0) {
-                    // Quitar la marca de limpiado si existe
-                    contador.removeAttribute('data-limpiado');
-                    
-                    // FORZAR que se muestre incluso si estaba oculto por limpieza
-                    contador.textContent = cantidadTotal;
-                    contador.style.display = 'inline-flex';
-                    contador.style.visibility = 'visible';
-                    contador.style.opacity = '1';
-                    // Resetear cualquier posicionamiento extraño
-                    contador.style.position = '';
-                    contador.style.left = '';
-                    contador.style.top = '';
-                    
-                    // Forzar repaint para asegurar que se vea
-                    contador.offsetHeight;
-                    
-                } else {
-                    contador.textContent = '';
-                    contador.style.display = 'none';
-                    contador.style.visibility = 'hidden';
-                    contador.style.opacity = '0';
-                }
+                this.aplicarEstiloContador(contador, cantidadTotal);
             }
         });
         
-        // También buscar por clases
-        const contadoresPorClase = document.querySelectorAll('.carrito-contador, .contador-carrito, .carrito-contador-menu');
-        contadoresPorClase.forEach(contador => {
-            if (cantidadTotal > 0) {
-                // Quitar la marca de limpiado si existe
-                contador.removeAttribute('data-limpiado');
-                
-                contador.textContent = cantidadTotal;
-                contador.style.display = 'inline-flex';
-                contador.style.visibility = 'visible';
-                contador.style.opacity = '1';
-            } else {
-                contador.textContent = '';
-                contador.style.display = 'none';
-                contador.style.visibility = 'hidden';
-                contador.style.opacity = '0';
-            }
+        // Actualizar por clases usando configuración centralizada
+        CarritoCompras.CONFIG.CONTADOR_CLASES.forEach(clase => {
+            const contadores = document.querySelectorAll(clase);
+            contadores.forEach(contador => {
+                this.aplicarEstiloContador(contador, cantidadTotal);
+            });
         });
         
         // FORZAR que TODOS los botones del carrito permanezcan SIEMPRE visibles
         this.forzarVisibilidadBotones();
     }
     
-    // Método específico para forzar la visibilidad de todos los botones del carrito
+    // Método helper para aplicar estilo a un contador individual
+    aplicarEstiloContador(contador, cantidadTotal) {
+        if (cantidadTotal > 0) {
+            // Quitar la marca de limpiado si existe
+            contador.removeAttribute('data-limpiado');
+            
+            // FORZAR que se muestre incluso si estaba oculto por limpieza
+            contador.textContent = cantidadTotal;
+            contador.style.display = 'inline-flex';
+            contador.style.visibility = 'visible';
+            contador.style.opacity = '1';
+            
+            // Resetear cualquier posicionamiento extraño
+            this.resetearPosicionamiento(contador);
+            
+            // Forzar repaint para asegurar que se vea
+            contador.offsetHeight;
+            
+        } else {
+            contador.textContent = '';
+            contador.style.display = 'none';
+            contador.style.visibility = 'hidden';
+            contador.style.opacity = '0';
+        }
+    }
+    
+    // Método helper para resetear posicionamiento
+    resetearPosicionamiento(elemento) {
+        elemento.style.position = '';
+        elemento.style.left = '';
+        elemento.style.top = '';
+    }
+    
+    // Método optimizado para forzar la visibilidad de todos los botones del carrito
     forzarVisibilidadBotones() {
-        // Lista de todos los posibles IDs de botones de carrito
-        const idsCarrito = [
-            'carrito-flotante',
-            'carrito-widget', 
-            'carrito-boton',
-            'carrito-boton-principal'
-        ];
-        
-        idsCarrito.forEach(id => {
+        // Usar configuración centralizada para IDs
+        CarritoCompras.CONFIG.BOTON_CARRITO_IDS.forEach(id => {
             const elemento = document.getElementById(id);
             if (elemento) {
-                elemento.style.display = elemento.tagName.toLowerCase() === 'button' ? 'flex' : 'block';
-                elemento.style.visibility = 'visible';
-                elemento.style.opacity = '1';
-                // Asegurar que no tenga clases que lo oculten
-                elemento.classList.remove('hidden', 'oculto', 'd-none');
-                // Restaurar posición fija si es necesario
-                this.restaurarPosicionCarrito();
+                this.aplicarVisibilidadBoton(elemento);
             }
         });
         
-        // También buscar elementos por clase
-        const elementosCarrito = document.querySelectorAll('.carrito-flotante, .carrito-flotante-menu, .btn-carrito');
-        elementosCarrito.forEach(elemento => {
-            elemento.style.display = elemento.tagName.toLowerCase() === 'button' ? 'flex' : 'block';
-            elemento.style.visibility = 'visible';
-            elemento.style.opacity = '1';
-            elemento.classList.remove('hidden', 'oculto', 'd-none');
+        // Usar configuración centralizada para clases
+        CarritoCompras.CONFIG.BOTON_CARRITO_CLASES.forEach(clase => {
+            const elementos = document.querySelectorAll(clase);
+            elementos.forEach(elemento => {
+                this.aplicarVisibilidadBoton(elemento);
+            });
         });
+        
+        // Restaurar posición del carrito flotante
+        this.restaurarPosicionCarrito();
         
         // CRÍTICO: Asegurar que NO se afecten los botones del menú
         this.protegerBotonesMenu();
+    }
+    
+    // Método helper para aplicar visibilidad a un botón individual
+    aplicarVisibilidadBoton(elemento) {
+        elemento.style.display = elemento.tagName.toLowerCase() === 'button' ? 'flex' : 'block';
+        elemento.style.visibility = 'visible';
+        elemento.style.opacity = '1';
+        
+        // Remover clases que puedan ocultar el elemento
+        const clasesOcultas = ['hidden', 'oculto', 'd-none'];
+        clasesOcultas.forEach(clase => elemento.classList.remove(clase));
     }
 
     // Restaurar posición correcta del carrito flotante
@@ -645,17 +687,12 @@ class CarritoCompras {
         this.configurarEventos();
     }
     
-    // Verificar si debe ocultar el carrito en ciertas páginas
+    // Método optimizado para verificar si debe ocultar el carrito en ciertas páginas
     debeOcultarCarrito() {
-        const paginasExcluidas = [
-            'contacto.html',
-            'contacto'
-        ];
-        
         const rutaActual = window.location.pathname.toLowerCase();
         const nombreArchivo = rutaActual.split('/').pop();
         
-        return paginasExcluidas.some(pagina => 
+        return CarritoCompras.CONFIG.PAGINAS_EXCLUIDAS.some(pagina => 
             rutaActual.includes(pagina) || nombreArchivo === pagina
         );
     }
@@ -722,9 +759,29 @@ class CarritoCompras {
     }
 
 
+    // Método helper para resetear contador individual
+    resetearContadorIndividual(elemento) {
+        elemento.textContent = '0';
+        elemento.innerHTML = '0';
+        
+        // Si tiene atributos de datos, limpiarlos también
+        if (elemento.dataset) {
+            elemento.dataset.count = '0';
+            elemento.dataset.cantidad = '0';
+        }
+        
+        // SOLO OCULTAR cuando sea 0, pero mantener capacidad de mostrarse
+        this.setVisibility(elemento, false);
+        
+        // Remover marca de limpiado para permitir actualizaciones futuras
+        elemento.removeAttribute('data-limpiado');
+        
+        // FORZAR repaint del navegador
+        elemento.offsetHeight;
+    }
+    
     // Método específico para forzar INMEDIATAMENTE el contador a 0
     forzarContadorACero() {
-        
         // Lista de TODOS los posibles contadores
         const contadores = [
             'carrito-contador',
@@ -733,60 +790,19 @@ class CarritoCompras {
             'carrito-count'
         ];
         
-        // Resetear por ID - SOLO RESETEAR CONTENIDO, NO OCULTAR
+        // Resetear por ID
         contadores.forEach(id => {
             const elemento = document.getElementById(id);
             if (elemento) {
-                // LIMPIAR completamente el contenido
-                elemento.textContent = '0';
-                elemento.innerHTML = '0';
-                
-                // Si tiene atributos de datos, limpiarlos también
-                if (elemento.dataset) {
-                    elemento.dataset.count = '0';
-                    elemento.dataset.cantidad = '0';
-                }
-                
-                // SOLO OCULTAR cuando sea 0, pero mantener capacidad de mostrarse
-                elemento.style.display = 'none';
-                elemento.style.visibility = 'hidden';
-                elemento.style.opacity = '0';
-                
-                // Remover marca de limpiado para permitir actualizaciones futuras
-                elemento.removeAttribute('data-limpiado');
-                
-                // FORZAR repaint del navegador
-                elemento.offsetHeight;
-                
+                this.resetearContadorIndividual(elemento);
             }
         });
         
-        // Resetear por clase - SOLO RESETEAR CONTENIDO, NO OCULTAR PERMANENTEMENTE
+        // Resetear por clase
         const contadoresPorClase = document.querySelectorAll('.carrito-contador, .contador-carrito, .carrito-contador-menu');
         contadoresPorClase.forEach(elemento => {
-            // LIMPIAR completamente el contenido
-            elemento.textContent = '0';
-            elemento.innerHTML = '0';
-            
-            // Si tiene atributos de datos, limpiarlos también
-            if (elemento.dataset) {
-                elemento.dataset.count = '0';
-                elemento.dataset.cantidad = '0';
-            }
-            
-            // SOLO OCULTAR cuando sea 0, pero mantener capacidad de mostrarse
-            elemento.style.display = 'none';
-            elemento.style.visibility = 'hidden';
-            elemento.style.opacity = '0';
-            
-            // Remover marca de limpiado para permitir actualizaciones futuras
-            elemento.removeAttribute('data-limpiado');
-            
-            // FORZAR repaint del navegador
-            elemento.offsetHeight;
-            
+            this.resetearContadorIndividual(elemento);
         });
-        
     }
     
     // Método específico para resetear completamente todos los contadores
@@ -848,9 +864,24 @@ class CarritoCompras {
         this.alternarCarrito();
     }
     
+    // Método helper para actualizar botón individual
+    actualizarBotonIndividual(boton, cantidadTotal) {
+        // Mantener el botón siempre visible
+        this.setVisibility(boton, true);
+        
+        // Forzar que el color del texto sea blanco
+        boton.style.color = 'white';
+        
+        // Mantener estilo constante sin cambios de clases
+        if (cantidadTotal > 0) {
+            boton.classList.remove('carrito-vacio');
+        } else {
+            boton.classList.remove('carrito-con-items');
+        }
+    }
+    
     // Método para actualizar la apariencia del botón del carrito
     actualizarAparienciaBotonCarrito() {
-        
         const cantidadTotal = this.obtenerCantidadTotal();
         
         // PRIMERO: Actualizar el contador
@@ -864,24 +895,8 @@ class CarritoCompras {
         ].filter(btn => btn !== null);
         
         botonesCarrito.forEach(boton => {
-            // Mantener el botón siempre visible
-            boton.style.display = 'flex';
-            boton.style.visibility = 'visible';
-            boton.style.opacity = '1';
-            
-            // Forzar que el color del texto sea blanco
-            boton.style.color = 'white';
-            
-        // Mantener estilo constante sin cambios de clases
-        if (cantidadTotal > 0) {
-            // No agregar clases que cambien la apariencia
-            boton.classList.remove('carrito-vacio');
-        } else {
-            // No agregar clases que cambien la apariencia
-            boton.classList.remove('carrito-con-items');
-        }
+            this.actualizarBotonIndividual(boton, cantidadTotal);
         });
-        
     }
     
     // Método para sincronizar con localStorage en caso de desajuste

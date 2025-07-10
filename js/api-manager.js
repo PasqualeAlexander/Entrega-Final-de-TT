@@ -5,15 +5,12 @@ class MenuAPIManager {
     this.productos = [];
     this.isLoaded = false;
     
-    // Solo inicializar si estamos en la página de menú
     if (window.location.pathname.includes('menu.html') || window.location.pathname.includes('menu') || window.location.pathname.includes('pages/menu')) {
       this.init();
     }
   }
 
-  // Inicializar la gestión de la API
   async init() {
-    // Mostrar loading mientras se cargan los productos
     this.mostrarLoading();
     
     try {
@@ -25,14 +22,12 @@ class MenuAPIManager {
     }
   }
 
-  // Mostrar indicador de carga
   mostrarLoading() {
     const menuGrid = document.querySelector('.menu-grid');
     if (!menuGrid) return;
 
     const template = document.getElementById('loading-template');
     if (!template) {
-      // Crear loading manual
       menuGrid.innerHTML = `
         <div class="loading-api" style="
           text-align: center;
@@ -61,10 +56,8 @@ class MenuAPIManager {
     menuGrid.appendChild(templateContent);
   }
 
-  // Cargar productos desde DummyJSON API
   async cargarProductos() {
     try {
-      // Cargar productos (limitamos a 15 para el menú)
       const response = await fetch(`${this.apiUrl}?limit=15`, {
         method: 'GET',
         headers: {
@@ -86,7 +79,6 @@ class MenuAPIManager {
   }
 
 
-  // Renderizar productos en el menú respetando TODOS los datos de la API
   renderizarProductos() {
     const menuGrid = document.querySelector('.menu-grid');
     if (!menuGrid) return;
@@ -97,22 +89,18 @@ class MenuAPIManager {
       const template = document.getElementById('product-card-template').content.cloneNode(true);
       const card = template.querySelector('.menu-item');
 
-      // Datos básicos
       card.id = `api-producto-${producto.id}`;
       card.dataset.precio = producto.price;
       card.dataset.categoria = producto.category;
       card.dataset.sku = producto.sku;
       card.dataset.disponibilidad = producto.availabilityStatus;
       
-      // Imagen y título
       card.querySelector('.item-image').src = producto.thumbnail;
       card.querySelector('.item-image').alt = producto.title;
       card.querySelector('.item-title').textContent = `${producto.title} 🌐`;
       
-      // Descripción
       card.querySelector('.item-description').textContent = this.truncarTexto(producto.description, 120);
       
-      // Precios y descuentos
       const precioOriginal = producto.price;
       const descuento = producto.discountPercentage;
       const precioConDescuento = descuento ? (precioOriginal * (1 - descuento / 100)).toFixed(2) : precioOriginal;
@@ -122,21 +110,17 @@ class MenuAPIManager {
         `<span style="text-decoration: line-through; color: #999;">$${precioOriginal}</span> <span style="color: #e74c3c; font-weight: bold;">$${precioConDescuento}</span>` : 
         `$${precioOriginal}`;
       
-      // Rating
       card.querySelector('.rating-stars').textContent = this.generarEstrellas(producto.rating);
       card.querySelector('.rating-score').textContent = `(${producto.rating.toFixed(1)})`;
       
-      // Categoría
       card.querySelector('.categoria-badge').textContent = producto.category.toUpperCase();
       
-      // Información de stock y marca
       card.querySelector('.stock-info').innerHTML = `
         <strong>Stock:</strong> ${producto.stock} unidades<br>
         <strong>Marca:</strong> ${producto.brand || 'No especificada'}<br>
         <strong>Estado:</strong> ${producto.availabilityStatus}
       `;
       
-      // Información adicional completa
       const tagsText = producto.tags && producto.tags.length ? producto.tags.join(', ') : 'Sin etiquetas';
       card.querySelector('.additional-info').innerHTML = `
         <div><strong>SKU:</strong> ${producto.sku}</div>
@@ -149,25 +133,21 @@ class MenuAPIManager {
         <div><strong>Etiquetas:</strong> ${tagsText}</div>
       `;
 
-      // Botones
       const btnAgregar = card.querySelector('.btn-agregar-carrito-menu');
       const btnDetalles = card.querySelector('.btn-ver-detalles');
       
-      // Configurar botón de agregar al carrito
       btnAgregar.dataset.producto = `api-${producto.id}`;
       btnAgregar.dataset.title = producto.title;
       btnAgregar.dataset.price = Math.round(producto.price * 100);
       btnAgregar.dataset.image = producto.thumbnail;
       btnAgregar.dataset.description = this.truncarTexto(producto.description, 80);
       
-      // Agregar event listener específico para productos de API
       btnAgregar.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         this.agregarAlCarrito(producto.id);
       });
       
-      // Configurar botón de detalles
       btnDetalles.setAttribute('onclick', `menuAPI.verDetallesProducto(${producto.id})`);
 
       menuGrid.appendChild(card);
@@ -176,12 +156,10 @@ class MenuAPIManager {
 
 
 
-  // Agregar producto al carrito
   agregarAlCarrito(productoId) {
     const producto = this.productos.find(p => p.id === productoId);
     if (!producto) return;
 
-    // Crear objeto compatible con el carrito existente
     const productoCarrito = {
       id: `api-${producto.id}`,
       nombre: producto.title,
@@ -192,12 +170,9 @@ class MenuAPIManager {
       tipo: 'api-product'
     };
 
-    // Esperar a que el carrito esté disponible si no lo está
     if (window.carrito && typeof window.carrito.agregarProducto === 'function') {
-      // Usar el carrito existente con datos directos
       window.carrito.agregarProducto(productoCarrito.id, 1, productoCarrito);
     } else {
-      // Esperar un poco más y intentar de nuevo
       setTimeout(() => {
         if (window.carrito && typeof window.carrito.agregarProducto === 'function') {
           window.carrito.agregarProducto(productoCarrito.id, 1, productoCarrito);

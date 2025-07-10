@@ -21,21 +21,21 @@
 /* Protección para botones del menú */
 .btn-comprar,
 .btn-agregar-carrito-menu {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: inline-flex !important;
-    position: static !important;
-    transform: none !important;
-    z-index: auto !important;
+    visibility: visible;
+    opacity: 1;
+    display: inline-flex;
+    position: static;
+    transform: none;
+    z-index: auto;
 }
 
 .btn-comprar.protegido-menu,
 .btn-agregar-carrito-menu.protegido-menu {
-    visibility: visible !important;
-    opacity: 1 !important;
-    display: inline-flex !important;
-    position: static !important;
-    transform: none !important;
+    visibility: visible;
+    opacity: 1;
+    display: inline-flex;
+    position: static;
+    transform: none;
 }
 
 /* Estilos para botones del carrito */
@@ -117,15 +117,15 @@
 
 /* Forzar visibilidad de elementos críticos */
 .forzar-visible {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 .forzar-flex {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
+    display: flex;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Responsive */

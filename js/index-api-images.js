@@ -4,12 +4,14 @@ class IndexAPIImages {
     constructor() {
         this.apiUrl = 'https://dummyjson.com/products';
         this.imagenesAPI = [];
+        this.lazyLoadObserver = null;
         this.init();
     }
 
     async init() {
         try {
             await this.cargarImagenesAPI();
+            this.configurarLazyLoading();
             this.reemplazarImagenes();
         } catch (error) {
             console.error('❌ Error al cargar imágenes de la API:', error);
@@ -102,6 +104,59 @@ class IndexAPIImages {
     truncarTexto(texto, limite) {
         if (texto.length <= limite) return texto;
         return texto.substring(0, limite) + '...';
+    }
+    
+    // Configurar Intersection Observer para lazy loading
+    configurarLazyLoading() {
+        if (!('IntersectionObserver' in window)) {
+            // Fallback para navegadores que no soportan Intersection Observer
+            console.warn('IntersectionObserver no soportado, cargando imágenes inmediatamente');
+            return;
+        }
+        
+        const config = {
+            rootMargin: '50px 0px',
+            threshold: 0.01
+        };
+        
+        this.lazyLoadObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    this.cargarImagenLazy(img);
+                    this.lazyLoadObserver.unobserve(img);
+                }
+            });
+        }, config);
+    }
+    
+    // Cargar imagen individual con lazy loading
+    cargarImagenLazy(img) {
+        const src = img.dataset.src;
+        if (src) {
+            // Crear imagen temporal para precargar
+            const tempImg = new Image();
+            tempImg.onload = () => {
+                img.src = src;
+                img.classList.add('imagen-cargada');
+                img.removeAttribute('data-src');
+            };
+            tempImg.onerror = () => {
+                img.classList.add('imagen-error');
+                console.error('Error al cargar imagen:', src);
+            };
+            tempImg.src = src;
+        }
+    }
+    
+    // Aplicar lazy loading a todas las imágenes con data-src
+    aplicarLazyLoading() {
+        if (!this.lazyLoadObserver) return;
+        
+        const imagenesLazy = document.querySelectorAll('img[data-src]');
+        imagenesLazy.forEach(img => {
+            this.lazyLoadObserver.observe(img);
+        });
     }
 }
 

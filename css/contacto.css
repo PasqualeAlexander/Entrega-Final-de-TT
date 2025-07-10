@@ -537,8 +537,8 @@ body > .redes-sociales {
 		align-items: center;
 	}
 
-	.hero-title {
-		font-size: 45px !important;
+	.hero-content .hero-title {
+		font-size: 45px;
 		line-height: 1.1;
 		margin: 30px auto 15px;
 		padding-top: 30px;
@@ -648,8 +648,8 @@ body > .redes-sociales {
 		align-items: center;
 	}
 
-	.hero-title {
-		font-size: 35px !important;
+	.hero-content .hero-title {
+		font-size: 35px;
 		line-height: 1.1;
 		margin: 15px auto 8px;
 		padding-top: 15px;

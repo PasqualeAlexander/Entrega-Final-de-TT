@@ -24,32 +24,26 @@ class CarritoUI {
             }
         });
         
-        // También buscar por clases
         const contadoresPorClase = document.querySelectorAll('.carrito-contador, .contador-carrito, .carrito-contador-menu');
         contadoresPorClase.forEach(contador => {
             this.configurarContador(contador, cantidadTotal);
         });
         
-        // Forzar visibilidad de botones del carrito
         this.forzarVisibilidadBotones();
     }
 
     configurarContador(contador, cantidadTotal) {
         if (cantidadTotal > 0) {
-            // Quitar la marca de limpiado si existe
             contador.removeAttribute('data-limpiado');
             
-            // FORZAR que se muestre incluso si estaba oculto por limpieza
             contador.textContent = cantidadTotal;
             contador.style.display = 'inline';
             contador.style.visibility = 'visible';
             contador.style.opacity = '1';
-            // Resetear cualquier posicionamiento extraño
             contador.style.position = '';
             contador.style.left = '';
             contador.style.top = '';
             
-            // Forzar repaint para asegurar que se vea
             contador.offsetHeight;
             
         } else {
@@ -67,14 +61,11 @@ class CarritoUI {
                 elemento.style.display = elemento.tagName.toLowerCase() === 'button' ? 'flex' : 'block';
                 elemento.style.visibility = 'visible';
                 elemento.style.opacity = '1';
-                // Asegurar que no tenga clases que lo oculten
                 elemento.classList.remove('hidden', 'oculto', 'd-none');
-                // Restaurar posición fija si es necesario
                 this.restaurarPosicionCarrito();
             }
         });
         
-        // También buscar elementos por clase
         const elementosCarrito = document.querySelectorAll('.carrito-flotante, .carrito-flotante-menu, .btn-carrito');
         elementosCarrito.forEach(elemento => {
             elemento.style.display = elemento.tagName.toLowerCase() === 'button' ? 'flex' : 'block';
@@ -83,14 +74,12 @@ class CarritoUI {
             elemento.classList.remove('hidden', 'oculto', 'd-none');
         });
         
-        // CRÍTICO: Asegurar que NO se afecten los botones del menú
         this.protegerBotonesMenu();
     }
 
     restaurarPosicionCarrito() {
         const carritoFlotante = document.getElementById('carrito-flotante');
         if (carritoFlotante) {
-            // Forzar posición fija en la esquina inferior derecha
             carritoFlotante.style.position = 'fixed';
             carritoFlotante.style.bottom = '30px';
             carritoFlotante.style.right = '30px';
@@ -103,19 +92,16 @@ class CarritoUI {
         // Asegurar que TODOS los botones de menú mantengan su estado original
         const botonesMenu = document.querySelectorAll('.btn-comprar, .btn-agregar-carrito-menu');
         botonesMenu.forEach(boton => {
-            // Solo restaurar si no tienen estilo inline que los oculte intencionalmente
             if (!boton.style.display || boton.style.display !== 'none') {
                 boton.style.visibility = 'visible';
                 boton.style.opacity = '1';
                 boton.style.position = 'static'; // Mantener posición normal
-                // No cambiar display, mantener el original del CSS
                 if (!boton.style.display) {
                     boton.style.display = 'inline-flex';
                 }
             }
         });
         
-        // Específicamente proteger los botones de la Boom Burger
         const boomBurger = document.getElementById('boom-burger');
         if (boomBurger) {
             const botonesBoom = boomBurger.querySelectorAll('.btn-comprar, .btn-agregar-carrito-menu');
@@ -146,25 +132,20 @@ class CarritoUI {
     }
 
     resetearContador(elemento) {
-        // LIMPIAR completamente el contenido
         elemento.textContent = '0';
         elemento.innerHTML = '0';
         
-        // Si tiene atributos de datos, limpiarlos también
         if (elemento.dataset) {
             elemento.dataset.count = '0';
             elemento.dataset.cantidad = '0';
         }
         
-        // SOLO OCULTAR cuando sea 0, pero mantener capacidad de mostrarse
         elemento.style.display = 'none';
         elemento.style.visibility = 'hidden';
         elemento.style.opacity = '0';
         
-        // Remover marca de limpiado para permitir actualizaciones futuras
         elemento.removeAttribute('data-limpiado');
         
-        // FORZAR repaint del navegador
         elemento.offsetHeight;
     }
 
@@ -181,17 +162,14 @@ class CarritoUI {
             contenidoCarrito.innerHTML = '<p class="carrito-vacio">Tu carrito está vacío</p>';
             if (totalCarrito) totalCarrito.textContent = '$0';
             
-            // Ocultar SOLO el botón de finalizar compra DEL CARRITO
             if (botonFinalizar) {
                 botonFinalizar.style.display = 'none';
             }
             return;
         }
 
-        // Limpiar contenido anterior COMPLETAMENTE
         contenidoCarrito.innerHTML = '';
         
-        // FORZAR que el contenedor sea visible
         contenidoCarrito.style.display = 'block';
         contenidoCarrito.style.visibility = 'visible';
         contenidoCarrito.style.opacity = '1';
